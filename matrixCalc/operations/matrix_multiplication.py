@@ -2,6 +2,11 @@ from matrix import *
 
 class MatrixMultiplication:
 
+    def __init__(self, mx1, mx2):
+        self.mx1 = mx1
+        self.mx2 = mx2
+        self.product = Matrix(mx1.m, mx2.n)#TODO:
+
     def multiply_matrices(self, mx1, mx2):
         if not self.check_matrix_dimensions(mx1, mx2):
             print("Rozměry matic se neshodují")

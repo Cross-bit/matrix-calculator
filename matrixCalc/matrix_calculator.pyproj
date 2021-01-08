@@ -44,6 +44,10 @@
     <Compile Include="matrix.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="operations\matrix_power.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="operations\matrix_sub.py" />
     <Compile Include="operations\matrix_sum.py">
       <SubType>Code</SubType>
     </Compile>
@@ -59,9 +63,6 @@
     <Compile Include="operations\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="useful_trash.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="operations\" />

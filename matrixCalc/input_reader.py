@@ -1,9 +1,10 @@
 class InputReader:
 
-    def __init__(self, expected_operation):
+    def __init__(self, operation_to_read, load_data_from):
         self.input = ""
         self.matrix_dims = ""
-        self.expected_operation = ""
+        self.expected_operation = operation_to_read
+        self.load_data_from = load_data_from
 
     @staticmethod
     def try_parse_matrix_input(input_data):
@@ -25,6 +26,10 @@ class InputReader:
                 pass
             else:
                return dimensions
+    
+    def read_matrix_data(self):
+
+
 
     def read_matrix_user_input(self):
         ctr = 0
@@ -43,6 +48,9 @@ class InputReader:
                     if(ctr > 0):
                         matrix_printer.print_simple(mx)
             ctr += 1
+
+    def load_matrix_data_from_file(self, file_name):
+        f = open()
 
 
 
