@@ -70,28 +70,33 @@ def operation_selection():
        }
     
 
+    if(operation_input.isnumeric()):
+        operation_input = int(operation_input)
+        if(operation_input < len(operations) and operation_input > 0):
+            return operations.get(int(operation_input))
 
-    if(operation_input.isnumeric() and int(operation_input) < len(operations)):
-        return operations.get(int(operation_input))
-    else:
-        Helpers.invalid_selection(operation_selection)
+    print("Hodnota není povolena! Enter – opakujte akci")
+    input()
+    return operation_selection() # TODO: až bude v classe uklidit komentáře
+
 
 # Uživatelské rozhraní výběru typu načtení dat
 def data_load_selection():
     print("""Vyber způsob zadání hodnot:\n1) Zadání v konzoli \n2) Načtení ze souboru""")
     try:
         user_selection = int(input())
-
-        if(user_selection == 1): #1 z konzole
+        if (user_selection == 1): #1 z konzole
             return OEH.load_data_from_console
-        else:
+        elif (user_selection == 2):
             return OEH.load_data_from_file
+
+        print("Hodnota není povolena! Enter – opakujte akci")
+        input()
+        return data_load_selection()
     except:
-
-        print("Neplatný výběr operace – Enter opakujte akci")
-        return data_load_selection
-
-
+        print("Hodnota není povolena! Enter – opakujte akci")
+        input()
+        return data_load_selection()
 
 main_loop()
 
@@ -99,7 +104,6 @@ main_loop()
 input()
 sys.exit
 matrix_printer.print_default(mx)
-
 
 mx.generate_random_values()
 
