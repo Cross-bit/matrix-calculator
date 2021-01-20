@@ -1,3 +1,4 @@
+from random import Random
 from matrix import *
 
 class MatrixGenerator:

@@ -18,19 +18,25 @@ class InputReader:
         except:
             return False
 
-    def read_matrix_dimensions(self):
+    def read_matrix_dimensions(self, validity_condition):
+        """ 
+        check_if_valid – Očekává funkci typu: lambda x: True/False
+        """
         continue_reading = True
 
         dimensions = []
         try:
             dimensions = self.__try_parse_matrix_dims(input())
 
-            if not dimensions:
-                print("jdfjalkf")
+            if dimensions == False or validity_condition(dimensions) == False:
+                print("Neplatně zadané rozměry matice, zkuste to znovu:")
+                return self.read_matrix_dimensions(validity_condition)
             else:
                 return dimensions
         except:
-            print("true")
+            print("Neplatně zadané rozměry matice, zkuste to znovu:")
+            return self.read_matrix_dimensions(validity_condition)
+
 
     def read_matrix_user_input(self, mx):
         ctr = 0
@@ -45,10 +51,23 @@ class InputReader:
                     mx.Data[ctr] = parsed_data_arr
                     continue_read_row = False
                 else:
-                    print("Neplatně zadaný řádek matice, zkuste to prosím znovu: ")
+                    print("Neplatně zadaný řádek matice, zkuste to znovu: ")
                     if(ctr > 0):
-                        matrix_printer.print_simple(mx)
+                        matrix_printer.print_simple(mx, formated = False)
             ctr += 1
+
+    def read_scalar(self):
+        scalar = 0
+        try:
+            scalar = input()
+            if(scalar.isnumeric()):
+                return int(scalar)
+            else:
+                print("Neplatně zadaný skalár, zkuste to znovu: ")
+                return self.read_scalar()
+
+        except:
+            return self.read_scalar()
 
 
 

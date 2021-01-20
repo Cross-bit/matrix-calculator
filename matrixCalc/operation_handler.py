@@ -2,7 +2,8 @@ from input_reader import InputReader
 from matrix import Matrix
 from operations import *
 from matrix_console_printer import *
-
+from elementary_operations import *
+from helpers import Helpers
 
 class OperationExecutionHandler:
     """Class that handles execution of a given operation. """
@@ -14,8 +15,11 @@ class OperationExecutionHandler:
         self.__operation = mx_operation_method; # Pointer na metodu zprostředkující danou operaci 
         self.current_operation = None # Reference objektu momentální operace z modulu operations
 
+        # Funkce sloužící ke kontrole rozměrů matice při zadávání hodnot uživatelem
+        self.dims_check = lambda x: True 
+
+
     def execute(self):
-        print(self.__operation)
         self.__operation(self);
 
 
@@ -25,38 +29,108 @@ class OperationExecutionHandler:
         pass
 
     def load_data_from_console(self):
-        print("Zadejte rozměry matice v podobě: mxn \n(tedy např. 3x3)")
-        dims = self.input_reader.read_matrix_dimensions()
+        print("Zadejte rozměry matice v podobě: mxn \n(tedy např. 3x3):")
+        dims = self.input_reader.read_matrix_dimensions(self.dims_check)
         mx = Matrix(dims[1], dims[0])
+
+        print("\nZadejte hodnoty matice po řádcích oddělné mezerou:")
         self.input_reader.read_matrix_user_input(mx)
         return mx            
 
     def mx_add(self):
 
+        print("\nOperace sčítání:")
+
         mx1 = self.__read_mx_data(self)
+
+        self.dims_check = lambda sec_mx_dims: Helpers.invalid_dims_addition(sec_mx_dims, mx1)
+
         mx2 = self.__read_mx_data(self)
         
-        print("Operace sčítání:")
 
-        mx1_str = MatrixConsolePrinter.print_simple(mx1, get=True)
-        mx2_str = MatrixConsolePrinter.print_simple(mx2, get=True)
+        MatrixConsolePrinter.print_default(mx1)
+        print("(+)")
+        MatrixConsolePrinter.print_default(mx2)
 
+        print("-" * (mx2.m * 2 + 1))
         self.current_operation = MatrixSum(mx1, mx2)
         mx_res = self.current_operation.sum()
-        mx_res_str = MatrixConsolePrinter.print_simple(mx_res, get=True)
+        MatrixConsolePrinter.print_default(mx_res)
 
-        print(mx1_str, " + ", mx2_str, " = ", mx_res_str, sep = "")
+    def mx_sub(self):
 
-    def mx_sub():
-        pass
+        print("\nOperace očítání:")
 
-    def mx_pow():
-        pass
+        print("\nZadejte 1. matici:")
+        print("¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯")
+        mx1 = self.__read_mx_data(self)
 
-    def mx_scal():
-        pass
+        print("\nZadejte 2. matici:")
+        print("¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯")
 
-    def mx_multi():
+        mx2 = self.__read_mx_data(self)
+        
+        MatrixConsolePrinter.print_default(mx1)
+        print("(-)")
+        MatrixConsolePrinter.print_default(mx2)
+
+        print("-" * (mx2.m * 2 + 1))
+        self.current_operation = MatrixSum(mx1, mx2)
+        mx_res = self.current_operation.sum(substract = True)
+        MatrixConsolePrinter.print_default(mx_res)
+
+
+    def mx_scal(self):
+
+        print("\nOperace násobení skalárem:")
+
+        print("\nZadejte matici:")
+        print("¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯")
+
+        mx = self.__read_mx_data(self)
+
+
+        print("Zadejte skalár:")
+        scalar = self.input_reader.read_scalar()
+
+        print(scalar)
+        print("(*)")
+        MatrixConsolePrinter.print_default(mx)
+
+
+        print("-" * (mx.m * 2 + 1))
+        self.current_operation = MatrixScalarMultiplication(mx, scalar)
+        mx_res = self.current_operation.multiply()
+        MatrixConsolePrinter.print_default(mx_res)
+
+
+
+    def mx_multi(self):
+
+        print("\nOperace násobení matic:")
+
+        print("\nZadejte 1. matici:")
+        print("¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯")
+        mx1 = self.__read_mx_data(self)
+
+        self.dims_check = lambda sec_mx_dims: Helpers.invalid_dims_multiplication(sec_mx_dims, mx1)
+
+        print("\nZadejte 2. matici:")
+        print("¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯")
+
+        mx2 = self.__read_mx_data(self)
+
+
+        MatrixConsolePrinter.print_default(mx1)
+        print("(*)")
+        MatrixConsolePrinter.print_default(mx2)
+
+        print("-" * (mx2.m * 2 + 1))
+        self.current_operation = MatrixMultiplication(mx1, mx2)
+        mx_res = self.current_operation.multiply()
+        MatrixConsolePrinter.print_default(mx_res)
+
+
         pass
 
     def mx_ref():
@@ -75,4 +149,7 @@ class OperationExecutionHandler:
         pass
 
     def mx_det():
+        pass
+
+    def mx_pow(self):
         pass

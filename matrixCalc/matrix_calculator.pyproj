@@ -50,7 +50,9 @@
     <Compile Include="operations\matrix_power.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="operations\matrix_sub.py" />
+    <Compile Include="operations\matrix_scalar_multiplication.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="operations\matrix_sum.py">
       <SubType>Code</SubType>
     </Compile>

@@ -10,29 +10,14 @@ from operations.matrix_sum import *
 from matrix_generator import *
 from operation_handler import OperationExecutionHandler as OEH
 from helpers import *
-
+from operations.matrix_scalar_multiplication import MatrixScalarMultiplication
 ##Testovací matice
 #matrix_generator = MatrixGenerator(5,2)
-#mx1 = MatrixGenerator.generate_random_matrix(2, 5)
-#mx2 = MatrixGenerator.generate_random_matrix(2, 5)
-#mx_sum = MatrixSum(mx1, mx2)
-#
-#mx_sum_res = mx_sum.sum()
-#matrix_printer.print_default(mx_sum_res)
-#input()
-#
-#
-#mx = Matrix(2, 2)
-#mx = matrix_generator.get_test_matrix_3x3_2()
-#
-#matrix_printer.print_default(mx)
-#matrix_printer.matrix_to_bracket_string(mx)
-#matrix_ref_operation = MatrixREF(mx)
-#
-##MatrixSum(mx1, mx2)
-#
-#mx_ref = matrix_ref_operation.matrix_to_ref()
-#matrix_printer.print_default(mx_ref)
+mx1 = MatrixGenerator.generate_random_matrix(5, 2)
+matrix_printer.print_simple(mx1)
+scal_multi = MatrixScalarMultiplication(mx1, 5)
+matrix_printer.print_default(scal_multi.multiply()) 
+
 
 # Hlavní blok programu
 def main_loop():
@@ -43,6 +28,9 @@ def main_loop():
 
     operations_handler = OEH(operation, data_load)
     operations_handler.execute()
+
+    print("")
+    return main_loop()
 
 
 # Uživatelské rozhraní výběru operace uživatelem
@@ -78,7 +66,6 @@ def operation_selection():
     print("Hodnota není povolena! Enter – opakujte akci")
     input()
     return operation_selection() # TODO: až bude v classe uklidit komentáře
-
 
 # Uživatelské rozhraní výběru typu načtení dat
 def data_load_selection():

@@ -3,7 +3,7 @@ from fractions import Fraction
 class MatrixConsolePrinter():
 
     @staticmethod
-    def print_default(matrix):
+    def print_default(matrix, get = False):
         res = []
         f_pi = Fraction()
         for i in range(matrix.m):
@@ -14,11 +14,17 @@ class MatrixConsolePrinter():
                 if(j > 0):
                     res.append(" ")
                 res.append(val)
-            res.append("|\n")
-        print("".join(res))
+                 
+            res.append("|\n") if(i < matrix.m-1) else res.append("|")
+
+        if(get == True):
+            return "".join(res)
+        else:
+            print("".join(res))
+
 
     @staticmethod
-    def print_simple(matrix, get = False):
+    def print_simple(matrix, get = False, with_zero_rows = False, formated = True):
         res = []
         for i in range(matrix.m):
             zero_ctr = 0
@@ -30,9 +36,14 @@ class MatrixConsolePrinter():
                 val = str(matrix.Data[i][j])
                 if(j > 0):
                     row_data.append(" ")
+
                 row_data.append(val)
+
+            if(i < matrix.m-1):
+                row_data.append("\n")
+
             # Pokud řádek není plný nul přidej
-            if(zero_ctr != matrix.m):
+            if(zero_ctr != matrix.n):
                 [res.append(row_element) for row_element in row_data]
         
         if(get == True):

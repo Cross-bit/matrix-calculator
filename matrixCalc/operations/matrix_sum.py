@@ -13,7 +13,6 @@ class MatrixSum:
             print("Zadané matice nejsou stejných roměrů!")
             return
 
-        print(self.product.m)
         for j in range(self.product.n):
             for i in range(self.product.m):
                 self.product.Data[i][j] = self.mx1.Data[i][j] + (self.mx2.Data[i][j] * (-1 if substract else 1))
