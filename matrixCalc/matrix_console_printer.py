@@ -18,7 +18,7 @@ class MatrixConsolePrinter():
         print("".join(res))
 
     @staticmethod
-    def print_simple(matrix):
+    def print_simple(matrix, get = False):
         res = []
         for i in range(matrix.m):
             zero_ctr = 0
@@ -34,8 +34,11 @@ class MatrixConsolePrinter():
             # Pokud řádek není plný nul přidej
             if(zero_ctr != matrix.m):
                 [res.append(row_element) for row_element in row_data]
-
-        print("".join(res))
+        
+        if(get == True):
+            return "".join(res)
+        else:
+            print("".join(res))
 
 
     def get_longest_elemet(self):

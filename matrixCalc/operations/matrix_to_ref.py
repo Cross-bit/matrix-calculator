@@ -10,7 +10,7 @@ class MatrixREF:
         self.mx_ref.Data = matrix.Data
         self.rank = 0
 
-    def convert_matrix_to_ref(self):
+    def matrix_to_ref(self):
 
         pivot_i_pos = 0
         j = 0

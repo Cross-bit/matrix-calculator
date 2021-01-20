@@ -25,6 +25,9 @@
     <Compile Include="elementary_operations.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="helpers.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="input_reader.py">
       <SubType>Code</SubType>
     </Compile>
@@ -58,6 +61,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="operations\matrix_transposition.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="operation_handler.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="operations\__init__.py">
