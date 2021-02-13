@@ -28,3 +28,8 @@ class Helpers:
         if not (is_valid):
             print("Počet sloupců první matice se v součinu musí rovnat počtu řádků druhé!")
         return is_valid
+
+    #@staticmethod
+    #def invalid_dims_determinant(mx):
+    #    return False if mx.m != mx.n else True
+

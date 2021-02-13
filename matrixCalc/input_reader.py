@@ -5,22 +5,18 @@ class InputReader:
     def __init__(self, load_data_from):
         self.input = ""
         self.matrix_dims = ""
-        self.load_data_from = load_data_from
+        self.load_data_from = load_data_from #TODO: odstranit
 
-    def try_parse_matrix_input(self, input_data):
+    def __try_parse_matrix_input(self, input_data):
         try:
             input_data_arr = input_data.split(" ")
-            if(len(input_data_arr) <= 1):
-                return [int(input_data_arr)]
-            else:
-                return list([int(x) for x in input_data_arr])
-        #TODO: Vracení chybových hlášek
+            return list([float(x) for x in input_data_arr])
         except:
             return False
 
     def read_matrix_dimensions(self, validity_condition):
         """ 
-        check_if_valid – Očekává funkci typu: lambda x: True/False
+        check_if_valid – Očekává funkci jako: lambda x: True/False
         """
         continue_reading = True
 
@@ -37,16 +33,16 @@ class InputReader:
             print("Neplatně zadané rozměry matice, zkuste to znovu:")
             return self.read_matrix_dimensions(validity_condition)
 
-
     def read_matrix_user_input(self, mx):
         ctr = 0
+
         while(ctr < mx.m):
             continue_read_row = True
 
-            # Čtení řádky
+            # Čtení řádku
             while(continue_read_row):
                 input_row = input()
-                parsed_data_arr = self.try_parse_matrix_input(input_row)
+                parsed_data_arr = self.__try_parse_matrix_input(input_row)
                 if(parsed_data_arr and len(parsed_data_arr) == mx.n):
                     mx.Data[ctr] = parsed_data_arr
                     continue_read_row = False
@@ -57,11 +53,14 @@ class InputReader:
             ctr += 1
 
     def read_scalar(self):
+        """
+        Vrátí skalár zadaný v konzoli jako typ float.
+        """
         scalar = 0
         try:
             scalar = input()
             if(scalar.isnumeric()):
-                return int(scalar)
+                return float(scalar)
             else:
                 print("Neplatně zadaný skalár, zkuste to znovu: ")
                 return self.read_scalar()
@@ -69,24 +68,34 @@ class InputReader:
         except:
             return self.read_scalar()
 
+    def read_matrix_data_from_file(self, file_name):
 
+        try:
+            mx_data_arr = []
 
-    def load_matrix_data_from_file(self, file_name, num_of_matrixes):
-        f = open("file_name", "r")
-        mx_raw_data = f.read()
-        # first row dims
+            f = open(file_name, "r")
+            mx_raw_data = [];
 
+            i = 0
+            for line in f.readlines():
+                if line.strip():
+                    mx_data_arr.append([float(val) for val in line.split()])
+                    i += 1
+            f.close()
 
+            return mx_data_arr
+        except:
+            print("Načtení matice ze souboru se nezdařilo.")
+            return False
 
     def __try_parse_matrix_dims(self, dim_string):
         try:
             dimensions = list([int(x) for x in dim_string.split("x")])
             
-            if(len(dimensions) != 2):
+            if(len(dimensions) != 2 or dimensions[0] < 1 or dimensions[1] < 1):
                 return False
             return dimensions
         except:
             return False
-
 
 

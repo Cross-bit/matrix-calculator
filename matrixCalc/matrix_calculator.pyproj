@@ -38,7 +38,7 @@
     <Compile Include="matrix_generator.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="operations\matrix_inverse.py">
+    <Compile Include="operations\matrix_inversion.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="operations\matrix_multiplication.py">

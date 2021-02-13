@@ -6,17 +6,48 @@ from input_reader import *
 from operations.matrix_multiplication import *
 from operations.matrix_transposition import *
 from operations.matrix_to_ref import *
+from operations.matrix_to_rref import *
+from operations.matrix_inversion import *
 from operations.matrix_sum import *
 from matrix_generator import *
 from operation_handler import OperationExecutionHandler as OEH
 from helpers import *
 from operations.matrix_scalar_multiplication import MatrixScalarMultiplication
+
 ##Testovací matice
 #matrix_generator = MatrixGenerator(5,2)
-mx1 = MatrixGenerator.generate_random_matrix(5, 2)
-matrix_printer.print_simple(mx1)
-scal_multi = MatrixScalarMultiplication(mx1, 5)
-matrix_printer.print_default(scal_multi.multiply()) 
+
+
+mx = MatrixGenerator.generate_random_matrix(3, 3)
+
+inp_reader = InputReader(lambda: 2+2)
+#data = inp_reader.read_matrix_data_from_file("mx1.txt")
+#mx.Data = data
+#matrix_printer.print_default(mx)
+#mx_expanded = ElementaryOperations.expand_for_identity_matrix(mx)
+#matrix_printer.print_simple(mx);
+mx_ref_op = MatrixREF(mx)
+mx_ref = mx_ref_op.matrix_to_ref()
+
+matrix_printer.print_default(mx_ref)
+matrix_printer.print_beautiful(mx_ref)
+#print()
+
+#mx_ref_op = MatrixInversion(mx) #MatrixRREF(mx_expanded)
+#
+#
+#mx_ref = mx_ref_op.calculate_inversion_of_matrix()
+#print()
+#matrix_printer.print_default(mx_ref)
+
+
+
+#mx1 = MatrixGenerator.generate_random_matrix(5, 2)
+#matrix_printer.print_simple(mx1)
+#scal_multi = MatrixScalarMultiplication(mx1, 5)
+#matrix_printer.print_default(scal_multi.multiply()) 
+
+
 
 
 # Hlavní blok programu
@@ -37,8 +68,8 @@ def main_loop():
 def operation_selection():
     # Základní výpis dat
     # Separace UI od logiky
-    print("Zvol operaci:\n")
-    print("""1) Sečti matice \n2) Odečti matice \n3) Vynásob skalárem \n4) Vynásob mnatice \n5) Transponuj matici \n6) Převeď na REF \n7) Převeď to RREF \n8) Urči inverzní matici \n9) Urči hodnost \n10) Urči determinant 
+    print("Zvolte operaci:\n")
+    print("""1) Sečti matice \n2) Odečti matice \n3) Vynásob skalárem \n4) Vynásob mnatice \n5) Transponuj matici \n6) Převeď na REF \n7) Převeď na RREF \n8) Urči inverzní matici \n9) Urči hodnost \n10) Urči determinant 
         """)
 
     operation_input = input()
@@ -60,7 +91,7 @@ def operation_selection():
 
     if(operation_input.isnumeric()):
         operation_input = int(operation_input)
-        if(operation_input < len(operations) and operation_input > 0):
+        if(operation_input <= len(operations) and operation_input > 0):
             return operations.get(int(operation_input))
 
     print("Hodnota není povolena! Enter – opakujte akci")

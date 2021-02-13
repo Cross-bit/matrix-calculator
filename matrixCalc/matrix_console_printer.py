@@ -13,14 +13,22 @@ class MatrixConsolePrinter():
                 val = str(f_pi.limit_denominator(100))
                 if(j > 0):
                     res.append(" ")
-                res.append(val)
-                 
+                res.append('{:^5}'.format(val))
+                
             res.append("|\n") if(i < matrix.m-1) else res.append("|")
 
         if(get == True):
             return "".join(res)
         else:
             print("".join(res))
+    
+    @staticmethod
+    def print_beautiful(matrix):
+        for i in range(matrix.m):
+            for j in range(matrix.n):
+                print ('{:4}'.format(matrix.Data[i][j]));
+
+            
 
 
     @staticmethod
