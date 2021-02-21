@@ -26,7 +26,7 @@
     <Compile Include="console_input_reader.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="elementary_operations.py">
+    <Compile Include="operations\elementary_operations.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="helpers.py">
@@ -54,6 +54,9 @@
     <Compile Include="matrix_print\matrix_print_object.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="operations\matrix_determinant.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="operations\matrix_inversion.py">
       <SubType>Code</SubType>
     </Compile>
@@ -61,9 +64,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="matrix.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="operations\matrix_power.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="operations\matrix_scalar_multiplication.py">

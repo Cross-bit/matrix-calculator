@@ -10,8 +10,9 @@ class OutputWriter:
 
 
     def __write_mx_to_file(matrix_to_write, file_name):
-
-        pass
+        
+        with open(file_name, "w") as file:
+            file.write('hello world')
         
 
 

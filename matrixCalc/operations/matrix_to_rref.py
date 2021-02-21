@@ -1,7 +1,7 @@
 from matrix import *
-from elementary_operations import *
-
+from operations.elementary_operations import *
 from operations.matrix_to_ref import *
+from operations.matrix_determinant import MatrixDeterminant
 
 
 class MatrixRREF:
@@ -13,9 +13,8 @@ class MatrixRREF:
         self.pivot_positions = []
         self.rank = 0
         self.__matrix_ref = None
-
-
     
+
     def matrix_to_rref(self):
 
         # Převod na standardní REF
@@ -29,7 +28,6 @@ class MatrixRREF:
         self.matrix_ref_to_rref()
          
         return self.mx_rref
-
 
     def matrix_ref_to_rref(self):
 

@@ -1,9 +1,19 @@
-from input_output.input_reader import InputReader
+from operations.matrix_addition import MatrixAddition 
+from operations.matrix_determinant import MatrixDeterminant
+from operations.matrix_inversion import MatrixInversion
+from operations.matrix_to_ref import MatrixREF
+from operations.matrix_to_rref import MatrixRREF
+from operations.matrix_transposition import MatrixTransposition
+from operations.matrix_scalar_multiplication import MatrixScalarMultiplication
+from operations.matrix_multiplication import MatrixMultiplication
+from operations.elementary_operations import ElementaryOperations
+
 from matrix import Matrix
-from operations import *
-from matrix_print.matrix_console_printer import *
-from elementary_operations import *
 from helpers import Helpers
+from matrix_print.matrix_console_printer import MatrixConsolePrinter
+from input_output.input_reader import InputReader
+
+
 
 
 class OperationExecution:
@@ -78,9 +88,9 @@ class OperationExecution:
         print("(+)")
         MatrixConsolePrinter.print_default(mx2)
 
-        print("-" * (mx2.m * 2 + 1))
+        print(" - " * (mx2.m * 2))
         self.current_operation = MatrixAddition(mx1, mx2)
-        mx_res = self.current_operation.sum()
+        mx_res = self.current_operation.calculate_sum()
         MatrixConsolePrinter.print_default(mx_res)
 
     def mx_sub(self):
@@ -102,9 +112,9 @@ class OperationExecution:
         print("(-)")
         MatrixConsolePrinter.print_default(mx2)
 
-        print("-" * (mx2.m * 2 + 1))
+        print(" - " * (mx2.m * 2 ))
         self.current_operation = MatrixAddition(mx1, mx2)
-        mx_res = self.current_operation.sum(substract = True)
+        mx_res = self.current_operation.calculate_sum(substract = True)
         MatrixConsolePrinter.print_default(mx_res)
 
     def mx_scal(self):
@@ -236,8 +246,9 @@ class OperationExecution:
 
         self.current_operation = MatrixREF(mx)
         mx_res = self.current_operation.matrix_to_ref()
+        print(self.current_operation.rank)
 
-    def mx_det(self):
+    def mx_determinant(self):
         print("\n Operace výpočet determinantu:")
  
         print("\nZadání matice:")
@@ -248,11 +259,7 @@ class OperationExecution:
         print("~(det(A))~")
 
 
-        self.current_operation = MatrixREF(mx)
-        self.current_operation.matrix_to_ref()
+        self.current_operation = MatrixDeterminant(mx);
         determinant = self.current_operation.calculate_determinant()
 
         print(determinant)
-
-    def mx_pow(self):
-        pass

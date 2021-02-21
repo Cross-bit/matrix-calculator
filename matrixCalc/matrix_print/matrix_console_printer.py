@@ -1,5 +1,4 @@
 from matrix import *
-from fractions import Fraction
 import math
 from matrix_print.matrix_print_object import MatrixPrintObject
 from matrix_print.column_padding import ColumnPadding

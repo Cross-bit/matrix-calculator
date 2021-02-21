@@ -1,24 +1,22 @@
-from elementary_operations import ElementaryOperations
+from operations.elementary_operations import ElementaryOperations
 from matrix import Matrix
-#from matrix_print.matrix_console_printer import MatrixConsolePrinter as matrix_printer
 
 class MatrixREF:
 
     def __init__(self, matrix):
         self.mx = matrix
-        self.mx_ref = Matrix(matrix.m, matrix.n)
-        self.mx_ref.Data = matrix.Data
+        self.mx_ref = Matrix(matrix.m, matrix.n, matrix.Data)
         self.rank = 0
         self.pivot_positions = []
         self.determinant = 1.0
-        self.__determinant_const = 1
+        self.determinant_sign = 1
 
     def matrix_to_ref(self):
 
-        pivot_i_position = 0
-        pivot_j_position = 0
+        pivot_i_position = 0 # pozice v řádku
+        pivot_j_position = 0 # pozice v sloupci
 
-        while (pivot_j_position < self.mx_ref.n and pivot_i_position < self.mx_ref.m):
+        while (pivot_j_position < self.mx.n and pivot_i_position < self.mx.m):
             
             # Pokud je pivot 0, tak je nutné prohodit řádky
             if(self.mx_ref.Data[pivot_i_position][pivot_j_position] == 0):
@@ -35,7 +33,7 @@ class MatrixREF:
 
         self.rank = len(self.pivot_positions)
 
-        return self.mx_ref
+        return Matrix(self.mx.m, self.mx.n, self.mx_ref.Data)
     
     def __switch_zero_pivot_row(self, pivot_i_position, pivot_j_position):
 
@@ -49,34 +47,11 @@ class MatrixREF:
         pivot_j_position = int(new_pivot_pos[1])
 
     def __calculate_ref_for_pivot_row(self, pivot_i_position, pivot_j_position):
-        for i in range(pivot_i_position+1, self.mx_ref.m):
+        for i in range(pivot_i_position+1, self.mx.m):
             multiply_const = (-1)*self.mx_ref.Data[i][pivot_j_position] / self.mx_ref.Data[pivot_i_position][pivot_j_position]
 
-            for s in range(pivot_j_position, self.mx_ref.n): # Přičtení násobku řádku
-                self.mx_ref.Data[i][s] = self.mx_ref.Data[i][s] + self.mx_ref.Data[pivot_i_position][s] * multiply_const
-
-    def calculate_determinant(self, matrix_dimensions = -1):
-
-        try:
-            if(matrix_dimensions == -1): 
-                matrix_dimensions = self.mx_ref.m
-
-            
-            if(matrix_dimensions == -1 and self.mx_ref.n != self.mx_ref):
-                print("Matice musí být pro výpočet determinantu čtvercová.")
-                return 0.0
-
-            
-            for i in range(matrix_dimensions):
-                self.determinant *= self.mx_ref.Data[i][i]
-
-            self.determinant *= self.__determinant_const
-            return self.determinant
-        except:
-            print("Při výpočtu determinantu došlo k chybě!")
-            return 0.0
-
-            
+            for s in range(pivot_j_position, self.mx.n): # Přičtení násobku řádku
+                self.mx_ref.Data[i][s] = self.mx_ref.Data[i][s] + self.mx_ref.Data[pivot_i_position][s] * multiply_const            
 
 
             

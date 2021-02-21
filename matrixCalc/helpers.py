@@ -30,8 +30,4 @@ class Helpers:
         return is_valid
 
 
-    @staticmethod
-    def decimal_to_fraction(self, data):
-        f_pi = Fraction(str(data))
-        return str(f_pi.limit_denominator(100))
 

@@ -1,46 +1,16 @@
 import sys
 from matrix import *
 from matrix_print.matrix_console_printer import MatrixConsolePrinter as matrix_printer
-from elementary_operations import *
 from input_output.input_reader import *
-from operations.matrix_multiplication import *
-from operations.matrix_transposition import *
-from operations.matrix_to_ref import *
-from operations.matrix_to_rref import *
-from operations.matrix_inversion import *
 from operations.matrix_addition import *
 from matrix_generator import *
 from operation_execution import OperationExecution as OE
-from helpers import *
-from operations.matrix_scalar_multiplication import MatrixScalarMultiplication
-
-##Testovací matice
-#matrix_generator = MatrixGenerator(5,2)
-
-input_r = InputReader()
-
-mx_data = input_r.read_matrix_data_from_file("mxf.txt")
-
-mx = Matrix(len(mx_data), len(mx_data[0]), mx_data);
 
 
-with open("mx_res.txt", "w") as file:
-    file.write('hello world')
-
-
-        
-
-
-
-#from input_output.output_writer import *
-
-
-
-
-
-#mx = MatrixGenerator.generate_random_matrix(3, 3, 10, 1000_00)
-
-matrix_printer.print_default(mx)
+#input_r = InputReader()
+#mx_data = input_r.read_matrix_data_from_file("mxf.txt")
+#mx = Matrix(len(mx_data), len(mx_data[0]), mx_data);
+#đmatrix_printer.print_default(mx)
 
 
 # Hlavní blok programu
@@ -50,14 +20,12 @@ def main_loop():
     # 2)
     data_load_function = data_load_selection()
 
-    operations_handler = OE(operation, data_load_function)
-    operations_handler.execute()
+    operations_executor = OE(operation, data_load_function)
+    operations_executor.execute()
+   
+    data_store_selection()
 
-    
-    
-
-
-    print("")
+    print()
     return main_loop()
 
 
@@ -84,7 +52,7 @@ def operation_selection():
         7: OE.mx_rref,
         8: OE.mx_inverse,
         9: OE.mx_rank,
-       10: OE.mx_det,
+       10: OE.mx_determinant,
        }
     
 
@@ -117,14 +85,23 @@ def data_load_selection():
         input()
         return data_load_selection()
 
+# Uživatelské rozhraní uložení dat
+def data_store_selection():
+    print("""Pokud si přejete matici uložit napiště jmémo souboru, nebo pro pokračování stiskněte Enter""")
+
+    try:
+        user_input = input()
+        user_input = user_input.strip()
+        if(user_input == ""):
+            return False
+        
+    except:
+        print("""Název souboru není platný, zkuste to prosím znovu:""")
+        return data_store_selection()
+
+
+# Začátek programu
 main_loop()
-
-
-input()
-sys.exit
-matrix_printer.print_default(mx)
-
-mx.generate_random_values()
 
 
 

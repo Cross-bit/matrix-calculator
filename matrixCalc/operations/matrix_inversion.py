@@ -1,6 +1,8 @@
-from operations.matrix_to_ref import *
-from operations.matrix_to_rref import *
-
+from operations.matrix_to_ref import MatrixREF
+from operations.matrix_to_rref import MatrixRREF
+from operations.matrix_determinant import MatrixDeterminant
+from operations.elementary_operations import ElementaryOperations
+from matrix import Matrix
 
 class MatrixInversion:
 
@@ -11,6 +13,7 @@ class MatrixInversion:
         self.mx_inv.Data = matrix.Data
         self.__mx_ref_operation = None
         self.__mx_rref_operation = None
+        
 
     def calculate_inversion_of_matrix(self):
 
@@ -21,9 +24,10 @@ class MatrixInversion:
             return
 
         self.__mx_ref_operation = MatrixREF(self.mx_ref_expanded)
-        self.__mx_ref_operation.matrix_to_ref()
+        mx_ref = self.__mx_ref_operation.matrix_to_ref()
 
-        determinant = self.__mx_ref_operation.calculate_determinant(min(self.mx.m, self.mx.n))
+        determinant_operation = MatrixDeterminant()
+        determinant = determinant_operation.get_determinant(mx_ref, (self.mx.m, self.mx.n), self.__mx_ref_operation.determinant_sign)
         
         if(abs(determinant) < 0.001 ): # menší než 0
             print ("Determinant je nulový, matice nemá inverz.")

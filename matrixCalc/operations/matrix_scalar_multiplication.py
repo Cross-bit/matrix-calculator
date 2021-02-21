@@ -1,4 +1,5 @@
-from elementary_operations import Matrix
+from operations.elementary_operations import ElementaryOperations
+from matrix import Matrix
 
 class MatrixScalarMultiplication:
 
