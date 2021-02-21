@@ -29,7 +29,9 @@ class Helpers:
             print("Počet sloupců první matice se v součinu musí rovnat počtu řádků druhé!")
         return is_valid
 
-    #@staticmethod
-    #def invalid_dims_determinant(mx):
-    #    return False if mx.m != mx.n else True
+
+    @staticmethod
+    def decimal_to_fraction(self, data):
+        f_pi = Fraction(str(data))
+        return str(f_pi.limit_denominator(100))
 

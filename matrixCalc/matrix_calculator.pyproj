@@ -12,6 +12,7 @@
     <OutputPath>.</OutputPath>
     <Name>matrix_calculator</Name>
     <RootNamespace>matrixCalc</RootNamespace>
+    <TestFramework>unittest</TestFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,20 +23,35 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="console_input_reader.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="elementary_operations.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="helpers.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="input_reader.py">
+    <Compile Include="input_output\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="input_output\input_reader.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="matrix_calculator.py" />
-    <Compile Include="matrix_console_printer.py">
+    <Compile Include="matrix_print\column_padding.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="matrix_print\matrix_console_printer.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="matrix_generator.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="matrix_print\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="matrix_print\matrix_print_object.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="operations\matrix_inversion.py">
@@ -53,7 +69,7 @@
     <Compile Include="operations\matrix_scalar_multiplication.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="operations\matrix_sum.py">
+    <Compile Include="operations\matrix_addition.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="operations\matrix_to_rref.py">
@@ -65,15 +81,34 @@
     <Compile Include="operations\matrix_transposition.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="operation_handler.py">
+    <Compile Include="operation_execution.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="operations\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="input_output\output_writer.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tests\helper_functions.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tests\test_operations.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tests\test_operation_execution.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tests\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="input_output\" />
+    <Folder Include="matrix_print\" />
     <Folder Include="operations\" />
+    <Folder Include="tests\" />
+    <Folder Include="tests\test_data_addition\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

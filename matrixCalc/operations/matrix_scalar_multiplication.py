@@ -1,12 +1,12 @@
-from elementary_operations import *
+from elementary_operations import Matrix
 
 class MatrixScalarMultiplication:
 
-    def __init__(self, mx, scalar):
-        self.mx = mx
+    def __init__(self, matrix, scalar):
+        self.mx = matrix
         self.scalar = scalar
-        self.res_mx = Matrix(mx.m, mx.n)
-        self.res_mx.Data = mx.Data
+        self.res_mx = Matrix(matrix.m, matrix.n)
+        self.res_mx.Data = matrix.Data
 
     def multiply(self):
 

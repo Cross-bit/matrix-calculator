@@ -1,38 +1,37 @@
 from matrix import *
 from fractions import Fraction
-class MatrixConsolePrinter():
+import math
+from matrix_print.matrix_print_object import MatrixPrintObject
+from matrix_print.column_padding import ColumnPadding
+
+
+class MatrixConsolePrinter:
 
     @staticmethod
-    def print_default(matrix, get = False):
-        res = []
-        f_pi = Fraction()
-        for i in range(matrix.m):
-            res.append("|")
-            for j in range(matrix.n):
-                f_pi = Fraction(str(matrix.Data[i][j]))
-                val = str(f_pi.limit_denominator(100))
-                if(j > 0):
-                    res.append(" ")
-                res.append('{:^5}'.format(val))
-                
-            res.append("|\n") if(i < matrix.m-1) else res.append("|")
+    def print_default(matrix, get = False, frac = False, round_to = 2):
 
-        if(get == True):
-            return "".join(res)
-        else:
-            print("".join(res))
-    
-    @staticmethod
-    def print_beautiful(matrix):
-        for i in range(matrix.m):
-            for j in range(matrix.n):
-                print ('{:4}'.format(matrix.Data[i][j]));
-
-            
+        matrix_print_object = MatrixPrintObject(matrix, frac, round_to)
+        column_padding = ColumnPadding(matrix_print_object)
+        padding_for_column = column_padding.get_padding_for_columns()
+        
+        res = '|'
+        res += ' |\n|'.join([''.join(
+            [('{:>'+str(padding_for_column[cell_index]+1)+'}').format(row[cell_index])
+            for cell_index in range(matrix.n)])
+            for row in matrix_print_object.data])
+        res += ' |'
+        
+        print(res)
 
 
     @staticmethod
     def print_simple(matrix, get = False, with_zero_rows = False, formated = True):
+
+        res = '\n'.join([''.join(
+            [('{:>'+str(padding_for_column[cell_index]+1)+'}').format(row[cell_index])
+            for cell_index in range(matrix.n)])
+            for row in matrix_print_object.data])
+
         res = []
         for i in range(matrix.m):
             zero_ctr = 0
@@ -58,14 +57,6 @@ class MatrixConsolePrinter():
             return "".join(res)
         else:
             print("".join(res))
-
-
-    def get_longest_elemet(self):
-        for j in range(self.n):
-            for i in range(self.n):
-                max_in_row[i] = max(self.Data[i])
-
-        return max(max_in_row)
 
     def matrix_to_bracket_string(matrix):
         res = []

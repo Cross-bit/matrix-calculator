@@ -1,20 +1,23 @@
-from input_reader import InputReader
+from input_output.input_reader import InputReader
 from matrix import Matrix
 from operations import *
-from matrix_console_printer import *
+from matrix_print.matrix_console_printer import *
 from elementary_operations import *
 from helpers import Helpers
 
-class OperationExecutionHandler:
-    """Class that handles execution of a given operation. """
+
+class OperationExecution:
+    """ Stará se o průběh a exekuci operací kalkulačky."""
 
     def __init__(self, mx_operation_method, load_data_method):
 
-        self.__read_mx_data = load_data_method; # Pointer na metodu loadu dat
-        self.input_reader = InputReader(load_data_method)
+        self.__read_mx_data = load_data_method;
+        self.input_reader = InputReader()
         self.__operation = mx_operation_method; # Pointer na metodu zprostředkující danou operaci 
+
         self.current_operation = None # Reference objektu momentální operace z modulu operations
         self.operation_result = None
+
         # Funkce sloužící ke kontrole rozměrů matice při zadávání hodnot uživatelem
         self.dims_check = lambda x: True 
 
@@ -22,16 +25,13 @@ class OperationExecutionHandler:
     def execute(self):
         self.__operation(self);
 
-
     def __get_matrix_dims(self):
         print("Zadejte rozměry matice celými čísly, ve tvaru: mxn \n(tedy např. 2x2):")
         return self.input_reader.read_matrix_dimensions(self.dims_check)
 
-
     def load_data_from_file(self):
-        #dims = self.__get_matrix_dims()
 
-        print("Zadejte název cílového souboru:")
+        print("Zadejte název cílového souboru ve formátu .txt (stačí bez přípony):")
         data_file_name = input()
 
         mx_data = self.input_reader.read_matrix_data_from_file(data_file_name);
@@ -40,7 +40,6 @@ class OperationExecutionHandler:
             mx = Matrix(len(mx_data), len(mx_data[0]), mx_data)
             dims = (mx.m, mx.n)
 
-            #print(self.dims_check)
             if(self.dims_check(dims)):
                 return mx
             else:
@@ -48,8 +47,6 @@ class OperationExecutionHandler:
 
 
         return self.load_data_from_file();
-
-
 
     def load_data_from_console(self):
         dims = self.__get_matrix_dims()
@@ -82,7 +79,7 @@ class OperationExecutionHandler:
         MatrixConsolePrinter.print_default(mx2)
 
         print("-" * (mx2.m * 2 + 1))
-        self.current_operation = MatrixSum(mx1, mx2)
+        self.current_operation = MatrixAddition(mx1, mx2)
         mx_res = self.current_operation.sum()
         MatrixConsolePrinter.print_default(mx_res)
 
@@ -106,7 +103,7 @@ class OperationExecutionHandler:
         MatrixConsolePrinter.print_default(mx2)
 
         print("-" * (mx2.m * 2 + 1))
-        self.current_operation = MatrixSum(mx1, mx2)
+        self.current_operation = MatrixAddition(mx1, mx2)
         mx_res = self.current_operation.sum(substract = True)
         MatrixConsolePrinter.print_default(mx_res)
 
@@ -135,7 +132,7 @@ class OperationExecutionHandler:
 
     def mx_multi(self):
 
-        print("\nOperace násobení matic:")
+        print("\nOperace: Maticové Násobení:")
 
         print("\nZadání 1. matice:")
         print("¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯")
@@ -148,7 +145,6 @@ class OperationExecutionHandler:
 
         mx2 = self.__read_mx_data(self)
 
-
         MatrixConsolePrinter.print_default(mx1)
         print("~(*)~")
         MatrixConsolePrinter.print_default(mx2)
@@ -159,7 +155,7 @@ class OperationExecutionHandler:
         MatrixConsolePrinter.print_default(mx_res)
 
     def mx_trans(self):
-        print("\nOperace transpozice:")
+        print("\nOperace: Transpozice:")
 
         print("\nZadání matice:")
         print("¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯")
@@ -170,13 +166,11 @@ class OperationExecutionHandler:
         self.current_operation = MatrixTransposition(mx)
         mx_res = self.current_operation.transpose()
 
-        #if(mx_res == None)
-
         MatrixConsolePrinter.print_default(mx_res)
 
     def mx_ref(self):
         
-        print("\nOperace REF:")
+        print("\nOperace: REF:")
 
         print("\nZadání matice:")
         print("¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯")
@@ -193,7 +187,7 @@ class OperationExecutionHandler:
         MatrixConsolePrinter.print_default(mx_res)
 
     def mx_rref(self):
-        print("\nOperace RREF:")
+        print("\nOperace: RREF:")
 
         print("\nZadání matice:")
         print("¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯")
@@ -212,7 +206,7 @@ class OperationExecutionHandler:
 
     def mx_inverse(self):
 
-        print("\nOperace určení inverzní matice:")
+        print("\nOperace: určení inverzní matice:")
 
         print("\nZadání matice:")
         print("¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯")
@@ -221,7 +215,7 @@ class OperationExecutionHandler:
         MatrixConsolePrinter.print_default(mx)
         print("~(A^(-1))~")
 
-        print("-" * (mx.m * 2 + 1))
+        print("-" * (mx.m**3))
 
         self.current_operation = MatrixInversion(mx)
         operation_state = self.current_operation.calculate_inversion_of_matrix()
@@ -229,10 +223,8 @@ class OperationExecutionHandler:
         if operation_state:
             MatrixConsolePrinter.print_default(mx)
 
-
-
     def mx_rank(self):
-        print("\n Operace určení hodnosti matice:")
+        print("\n Operace: hodnost matice:")
         
         print("\nZadání matice:")
         print("¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯")
@@ -244,9 +236,6 @@ class OperationExecutionHandler:
 
         self.current_operation = MatrixREF(mx)
         mx_res = self.current_operation.matrix_to_ref()
-
-        print(self.current_operation.rank)
-
 
     def mx_det(self):
         print("\n Operace výpočet determinantu:")
@@ -264,7 +253,6 @@ class OperationExecutionHandler:
         determinant = self.current_operation.calculate_determinant()
 
         print(determinant)
-
 
     def mx_pow(self):
         pass

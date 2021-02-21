@@ -1,4 +1,4 @@
-from matrix import *
+from matrix import Matrix
 from operations import matrix_power
 
 

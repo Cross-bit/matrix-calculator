@@ -2,10 +2,9 @@ from operations import *
 
 class InputReader:
 
-    def __init__(self, load_data_from):
+    def __init__(self):
         self.input = ""
         self.matrix_dims = ""
-        self.load_data_from = load_data_from #TODO: odstranit
 
     def __try_parse_matrix_input(self, input_data):
         try:
@@ -64,23 +63,20 @@ class InputReader:
             else:
                 print("Neplatně zadaný skalár, zkuste to znovu: ")
                 return self.read_scalar()
-
         except:
             return self.read_scalar()
 
     def read_matrix_data_from_file(self, file_name):
-
         try:
             mx_data_arr = []
 
+            file_name = file_name if file_name.endswith(".txt") else file_name + ".txt";
             f = open(file_name, "r")
             mx_raw_data = [];
 
-            i = 0
             for line in f.readlines():
                 if line.strip():
                     mx_data_arr.append([float(val) for val in line.split()])
-                    i += 1
             f.close()
 
             return mx_data_arr
@@ -91,7 +87,6 @@ class InputReader:
     def __try_parse_matrix_dims(self, dim_string):
         try:
             dimensions = list([int(x) for x in dim_string.split("x")])
-            
             if(len(dimensions) != 2 or dimensions[0] < 1 or dimensions[1] < 1):
                 return False
             return dimensions

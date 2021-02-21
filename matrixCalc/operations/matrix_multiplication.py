@@ -1,11 +1,11 @@
-from matrix import *
+from matrix import Matrix
 
 class MatrixMultiplication:
 
-    def __init__(self, mx1, mx2):
-        self.mx1 = mx1
-        self.mx2 = mx2
-        self.mx_res = Matrix(mx1.m, mx2.n)
+    def __init__(self, matrix1, matrix2):
+        self.mx1 = matrix1
+        self.mx2 = matrix2
+        self.mx_res = Matrix(matrix1.m, matrix2.n)
 
     def multiply(self):
         if not self.__check_matrix_dimensions(self.mx1, self.mx2):

@@ -13,12 +13,9 @@ class ElementaryOperations:
         Výměna řádků matice. row1, row2 odpovídají indexům řádků, které mají být prohozeny (počínaje 0).
         V případě poskytnutí špatných rozsahů indexů hodí výjimku.
         """
-        
         if(row1 >= mx.m or row2 >= mx.m or row1 < 0 or row2 < 0):
             raise Exception("Indexy sahají mimo rozsah matice!")
             return
-
-        # Projde jednotlivé hodnoty řádků a prohodí je
         for j in range(mx.n):
             mx.Data[row1][j], mx.Data[row2][j] = mx.Data[row2][j], mx.Data[row1][j]
 
@@ -27,10 +24,8 @@ class ElementaryOperations:
         """
         Projde všechny prvky o indexu row a vynásobí konstantou scalar
         """
-
         if(row >= mx.m or row < 0):
-            raise Exception("Násobení řádku skalárem: Řádek matice neexistuje!")
-
+            raise Exception("Řádek matice neexistuje!")
         for j in range(mx.n):
             mx.Data[row][j] *= scalar
 
@@ -39,10 +34,8 @@ class ElementaryOperations:
         """
         Přičtení řádku row1 k řádku row2.
         """
-
         if(row1 >= mx.m or row2 >= mx.m or row1 < 0 or row2 < 0):
-            raise Exception("Sčítání řádků: Řádek matice neexistuje!")
-
+            raise Exception("Řádek matice neexistuje!")
         for j in range(mx.n):
             mx.Data[row2][j] += mx.Data[row1][j]
 
@@ -57,10 +50,10 @@ class ElementaryOperations:
         if(start_row >= mx.m or start_col >= mx.n or start_row < 0 or start_col < 0):
             raise Exception("Souřadnice jsou mimo rozsah matice!")
 
-        for l in range(start_col, mx.n):
-            for r in range(start_row, mx.m):
-                if(mx.Data[r][l] != 0):
-                    return (r, l)
+        for i in range(start_col, mx.n):
+            for j in range(start_row, mx.m):
+                if(mx.Data[j][i] != 0):
+                    return (j, i)
 
         return (0, 0)
 
@@ -85,6 +78,10 @@ class ElementaryOperations:
             return mx_expanded
         except:
             return
+
+    #@staticmethod
+    #def calculate_determinant_from_REF():
+
 
 
 
