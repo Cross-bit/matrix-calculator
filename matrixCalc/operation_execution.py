@@ -206,13 +206,11 @@ class OperationExecution:
         MatrixConsolePrinter.print_default(mx)
         print("~(RREF)~")
 
-        print("-" * (mx.m * 2 + 1))
+        print(" - " * (mx.m * 2))
 
         self.current_operation = MatrixRREF(mx)
         mx_res = self.current_operation.matrix_to_rref()
         MatrixConsolePrinter.print_default(mx_res)
-
-        pass
 
     def mx_inverse(self):
 
@@ -225,13 +223,13 @@ class OperationExecution:
         MatrixConsolePrinter.print_default(mx)
         print("~(A^(-1))~")
 
-        print("-" * (mx.m**3))
+        print(" - " * (mx.m * 2))
 
         self.current_operation = MatrixInversion(mx)
         operation_state = self.current_operation.calculate_inversion_of_matrix()
 
         if operation_state:
-            MatrixConsolePrinter.print_default(mx)
+            MatrixConsolePrinter.print_default(mx, True, 1000)
 
     def mx_rank(self):
         print("\n Operace: hodnost matice:")

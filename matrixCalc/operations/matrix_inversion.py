@@ -4,6 +4,8 @@ from operations.matrix_determinant import MatrixDeterminant
 from operations.elementary_operations import ElementaryOperations
 from matrix import Matrix
 
+from matrix_print.matrix_console_printer import MatrixConsolePrinter as pr
+
 class MatrixInversion:
 
     def __init__(self, matrix):
@@ -24,10 +26,11 @@ class MatrixInversion:
             return
 
         self.__mx_ref_operation = MatrixREF(self.mx_ref_expanded)
-        mx_ref = self.__mx_ref_operation.matrix_to_ref()
+        self.mx_ref_expanded = self.__mx_ref_operation.matrix_to_ref()
+
 
         determinant_operation = MatrixDeterminant()
-        determinant = determinant_operation.get_determinant(mx_ref, (self.mx.m, self.mx.n), self.__mx_ref_operation.determinant_sign)
+        determinant = determinant_operation.get_determinant(self.mx_ref_expanded, (self.mx.m, self.mx.n), self.__mx_ref_operation.determinant_sign)
         
         if(abs(determinant) < 0.001 ): # menší než 0
             print ("Determinant je nulový, matice nemá inverz.")
@@ -37,7 +40,7 @@ class MatrixInversion:
         self.__mx_rref_operation.pivot_positions = self.__mx_ref_operation.pivot_positions
 
         self.__mx_rref_operation.matrix_ref_to_rref()
-        
+
         for i in range(0, self.mx_ref_expanded.m):
             self.mx_inv.Data[i] = self.mx_ref_expanded.Data[i][self.mx_inv.n:self.mx_ref_expanded.n]
 
