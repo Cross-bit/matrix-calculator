@@ -35,7 +35,7 @@ def operation_selection():
     # Separace UI od logiky
 
     print("Zvolte operaci:\n")
-    print("""1) Maticový součet \n2) Maticový rozdíl \n3) Vynásobení skalárem \n4) Mnaticové násobení \n5) Maticová transpozice \n6) Převod na REF \n7) Převod na RREF \n8) Inverzní matice \n9) Určení hodnosti \n10) Určení determinantu 
+    print("""1) Maticový součet \n2) Maticový rozdíl \n3) Vynásobení skalárem \n4) Maticové násobení \n5) Maticová transpozice \n6) Převod na REF \n7) Převod na RREF \n8) Inverzní matice \n9) Určení hodnosti \n10) Určení determinantu 
         """)
 
     operation_input = input()
@@ -87,7 +87,7 @@ def data_load_selection():
 
 # Uživatelské rozhraní uložení dat
 def data_store_selection():
-    print("""Pokud si přejete matici uložit napiště jmémo souboru, nebo pro pokračování stiskněte Enter""")
+    #print("""Pokud si přejete matici uložit napište jméno souboru, jinak pro pokračování stiskněte Enter""")TODO:
 
     try:
         user_input = input()
