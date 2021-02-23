@@ -1,4 +1,7 @@
-from operations import *
+from helpers import Helpers
+import constants
+from matrix_print.matrix_console_printer import MatrixConsolePrinter as matrix_printer
+import os.path
 
 class InputReader:
 
@@ -8,8 +11,8 @@ class InputReader:
 
     def __try_parse_matrix_input(self, input_data):
         try:
-            input_data_arr = input_data.split(" ")
-            return list([float(x) for x in input_data_arr])
+            input_data_arr = input_data.split()
+            return list([float(input_value.strip()) for input_value in input_data_arr])
         except:
             return False
 
@@ -48,7 +51,7 @@ class InputReader:
                 else:
                     print("Neplatně zadaný řádek matice, zkuste to znovu: ")
                     if(ctr > 0):
-                        matrix_printer.print_simple(mx, formated = False)
+                        matrix_printer.print_simple(mx, True)
             ctr += 1
 
     def read_scalar(self):
@@ -70,14 +73,14 @@ class InputReader:
         try:
             mx_data_arr = []
 
-            file_name = file_name if file_name.endswith(".txt") else file_name + ".txt";
-            f = open(file_name, "r")
-            mx_raw_data = [];
+            file_name = Helpers.correnct_file_name_exstention(file_name)
+            path_to_file = '{0}/../{1}/{2}'.format(os.path.dirname(__file__), constants.INPUT_FILES_DIR, file_name)
 
-            for line in f.readlines():
-                if line.strip():
-                    mx_data_arr.append([float(val) for val in line.split()])
-            f.close()
+            with open(path_to_file, "r") as file:
+                mx_raw_data = [];
+                for line in file.readlines():
+                    if line.strip():
+                        mx_data_arr.append([float(val) for val in line.split()])
 
             return mx_data_arr
         except:

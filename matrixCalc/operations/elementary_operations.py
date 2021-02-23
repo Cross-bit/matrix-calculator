@@ -79,9 +79,6 @@ class ElementaryOperations:
         except:
             return
 
-    #@staticmethod
-    #def calculate_determinant_from_REF():
-
 
 
 

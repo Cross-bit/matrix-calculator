@@ -23,7 +23,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="console_input_reader.py">
+    <Compile Include="constants.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="main_user_interface.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="operations\elementary_operations.py">

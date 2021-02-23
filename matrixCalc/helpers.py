@@ -29,5 +29,8 @@ class Helpers:
             print("Počet sloupců první matice se v součinu musí rovnat počtu řádků druhé!")
         return is_valid
 
+    @ staticmethod 
+    def correnct_file_name_exstention(file_name, valid_exstention = "txt"):
+        return file_name if file_name.endswith(valid_exstention) else "{0}.{1}".format(file_name, valid_exstention);
 
 

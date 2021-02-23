@@ -2,14 +2,14 @@ from matrix import *
 import math
 from matrix_print.matrix_print_object import MatrixPrintObject
 from matrix_print.column_padding import ColumnPadding
-
+import constants
 
 class MatrixConsolePrinter:
 
     @staticmethod
-    def print_default(matrix, get = False, frac = False, round_to = 2):
+    def print_default(matrix):
 
-        matrix_print_object = MatrixPrintObject(matrix, frac, round_to)
+        matrix_print_object = MatrixPrintObject(matrix, constants.VALUE_OUTPU_FORMAT, constants.VALUE_OUTPUT_PRECISION)
         column_padding = ColumnPadding(matrix_print_object)
         padding_for_column = column_padding.get_padding_for_columns()
         
@@ -22,41 +22,17 @@ class MatrixConsolePrinter:
         
         print(res)
 
+    @staticmethod
+    def print_simple(matrix, remove_zeroes = False, get = False):
+
+        matrix_print_object = MatrixPrintObject (matrix, constants.VALUE_OUTPU_FORMAT, constants.VALUE_OUTPUT_PRECISION, remove_zeroes)
+
+        res = ''
+        res += '\n'.join([' '.join([cell for cell in row]) for row in matrix_print_object.data])
+
+        return res if get else print(res)
 
     @staticmethod
-    def print_simple(matrix, get = False, with_zero_rows = False, formated = True):
-
-        res = '\n'.join([''.join(
-            [('{:>'+str(padding_for_column[cell_index]+1)+'}').format(row[cell_index])
-            for cell_index in range(matrix.n)])
-            for row in matrix_print_object.data])
-
-        res = []
-        for i in range(matrix.m):
-            zero_ctr = 0
-            row_data = []
-            for j in range(matrix.n):
-                if(matrix.Data[i][j] == 0):
-                    zero_ctr += 1
-                
-                val = str(matrix.Data[i][j])
-                if(j > 0):
-                    row_data.append(" ")
-
-                row_data.append(val)
-
-            if(i < matrix.m-1):
-                row_data.append("\n")
-
-            # Pokud řádek není plný nul přidej
-            if(zero_ctr != matrix.n):
-                [res.append(row_element) for row_element in row_data]
-        
-        if(get == True):
-            return "".join(res)
-        else:
-            print("".join(res))
-
     def matrix_to_bracket_string(matrix):
         res = []
         res.append("{")
