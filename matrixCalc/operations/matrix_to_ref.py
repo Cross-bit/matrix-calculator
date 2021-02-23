@@ -1,5 +1,7 @@
 from operations.elementary_operations import ElementaryOperations
 from matrix import Matrix
+from matrix_print.matrix_console_printer import MatrixConsolePrinter as pc
+
 
 class MatrixREF:
 
@@ -20,14 +22,14 @@ class MatrixREF:
             
             # Pokud je pivot 0, tak je nutné prohodit řádky
             if(self.mx_ref.Data[pivot_i_position][pivot_j_position] == 0):
-                self.__switch_zero_pivot_row(pivot_i_position, pivot_j_position)
+                pivot_j_position = self.__switch_zero_pivot_row(pivot_i_position, pivot_j_position)
                         
                 self.determinant_sign *= -1 # Pro determinant se obrátí znaménko
 
             self.__calculate_ref_for_pivot_row(pivot_i_position, pivot_j_position)
 
             self.pivot_positions.append([pivot_i_position, pivot_j_position])
-
+            
             pivot_j_position += 1
             pivot_i_position += 1
 
@@ -44,7 +46,7 @@ class MatrixREF:
             return self.mx_ref
 
         ElementaryOperations.exchange_rows(self.mx_ref, pivot_i_position, int(new_pivot_pos[0]))
-        pivot_j_position = int(new_pivot_pos[1])
+        return int(new_pivot_pos[1])
 
     def __calculate_ref_for_pivot_row(self, pivot_i_position, pivot_j_position):
         for i in range(pivot_i_position+1, self.mx.m):
