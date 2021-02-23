@@ -21,7 +21,7 @@ class MatrixInversion:
 
         self.mx_ref_expanded = ElementaryOperations.expand_for_identity_matrix(self.mx)
         
-        if(self.mx_ref_expanded is None):
+        if self.mx_ref_expanded is None:
             print ("Matice není čtvercová.")
             return
         self.__calculate_ref();

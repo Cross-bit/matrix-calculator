@@ -51,7 +51,7 @@ class InputReader:
                 else:
                     print("Neplatně zadaný řádek matice, zkuste to znovu: ")
                     if(ctr > 0):
-                        matrix_printer.print_simple(mx, True)
+                        matrix_printer.print_simple(mx)
             ctr += 1
 
     def read_scalar(self):

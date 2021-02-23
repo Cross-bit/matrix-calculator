@@ -23,9 +23,9 @@ class MatrixConsolePrinter:
         print(res)
 
     @staticmethod
-    def print_simple(matrix, remove_zeroes = False, get = False):
+    def print_simple(matrix, get = False):
 
-        matrix_print_object = MatrixPrintObject (matrix, constants.VALUE_OUTPU_FORMAT, constants.VALUE_OUTPUT_PRECISION, remove_zeroes)
+        matrix_print_object = MatrixPrintObject (matrix, constants.VALUE_OUTPU_FORMAT, constants.VALUE_OUTPUT_PRECISION)
 
         res = ''
         res += '\n'.join([' '.join([cell for cell in row]) for row in matrix_print_object.data])

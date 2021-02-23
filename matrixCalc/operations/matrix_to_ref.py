@@ -22,7 +22,7 @@ class MatrixREF:
             if(self.mx_ref.Data[pivot_i_position][pivot_j_position] == 0):
                 self.__switch_zero_pivot_row(pivot_i_position, pivot_j_position)
                         
-                self.__determinant_const *= -1 # Pro determinant se obrátí znaménko
+                self.determinant_sign *= -1 # Pro determinant se obrátí znaménko
 
             self.__calculate_ref_for_pivot_row(pivot_i_position, pivot_j_position)
 

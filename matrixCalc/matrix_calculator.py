@@ -22,9 +22,10 @@ def main_loop():
     operations_executor.execute()
    
     # 4)
-    file_name = user_interface.data_store_selection()
-    if file_name:
-        operations_executor.write_mx_data_to_file(file_name)
+    if(operations_executor.operation_result is not None): # Pokud se operace zdařila => nabídka uložení operace
+        file_name = user_interface.data_store_selection()
+        if file_name:
+            operations_executor.write_mx_data_to_file(file_name)
 
     print()
     return main_loop()

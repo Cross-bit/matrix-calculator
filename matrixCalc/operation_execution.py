@@ -27,7 +27,7 @@ class OperationExecution:
         self.__operation = mx_operation_method; # Pointer na metodu zprostředkující danou operaci 
 
         self.__current_operation = None # Reference objektu momentální operace z modulu operations
-        self.__operation_result = None
+        self.operation_result = None
 
         # Funkce sloužící ke kontrole rozměrů matice při zadávání hodnot uživatelem
         self.dims_check = lambda x: True 
@@ -37,7 +37,7 @@ class OperationExecution:
 
     def write_mx_data_to_file(self, file_name):
         if(file_name != ""):
-            self.output_writer.write_to_file(self.__operation_result, file_name)
+            self.output_writer.write_to_file(self.operation_result, file_name)
         else:
             raise Exception("Název souboru je prázdný!")
 
@@ -96,8 +96,8 @@ class OperationExecution:
 
         print(" - " * (mx2.m * 2))
         self.__current_operation = MatrixAddition(mx1, mx2)
-        self.__operation_result = self.__current_operation.calculate_sum()
-        MatrixConsolePrinter.print_default(self.__operation_result)
+        self.operation_result = self.__current_operation.calculate_sum()
+        MatrixConsolePrinter.print_default(self.operation_result)
 
     def mx_sub(self):
 
@@ -120,8 +120,8 @@ class OperationExecution:
 
         print(" - " * (mx2.m * 2 ))
         self.__current_operation = MatrixAddition(mx1, mx2)
-        self.__operation_result = self.__current_operation.calculate_sum(substract = True)
-        MatrixConsolePrinter.print_default(self.__operation_result)
+        self.operation_result = self.__current_operation.calculate_sum(substract = True)
+        MatrixConsolePrinter.print_default(self.operation_result)
 
     def mx_scal(self):
 
@@ -143,8 +143,8 @@ class OperationExecution:
 
         print("-" * (mx.m * 2 + 1))
         self.__current_operation = MatrixScalarMultiplication(mx, scalar)
-        self.__operation_result = self.__current_operation.multiply()
-        MatrixConsolePrinter.print_default(self.__operation_result)
+        self.operation_result = self.__current_operation.multiply()
+        MatrixConsolePrinter.print_default(self.operation_result)
 
     def mx_multi(self):
 
@@ -167,8 +167,8 @@ class OperationExecution:
 
         print("-" * (mx2.m * 2 + 1))
         self.__current_operation = MatrixMultiplication(mx1, mx2)
-        self.__operation_result = self.__current_operation.multiply()
-        MatrixConsolePrinter.print_default(self.__operation_result)
+        self.operation_result = self.__current_operation.multiply()
+        MatrixConsolePrinter.print_default(self.operation_result)
 
     def mx_trans(self):
         print("\nOperace: Transpozice:")
@@ -180,9 +180,9 @@ class OperationExecution:
         print("-" * (mx.m * 2 + 1))
 
         self.__current_operation = MatrixTransposition(mx)
-        self.__operation_result = self.__current_operation.transpose()
+        self.operation_result = self.__current_operation.transpose()
 
-        MatrixConsolePrinter.print_default(self.__operation_result)
+        MatrixConsolePrinter.print_default(self.operation_result)
 
     def mx_ref(self):
         
@@ -198,9 +198,9 @@ class OperationExecution:
         print("-" * (mx.m * 2 + 1))
 
         self.__current_operation = MatrixREF(mx)
-        self.__operation_result = self.__current_operation.matrix_to_ref()
+        self.operation_result = self.__current_operation.matrix_to_ref()
 
-        MatrixConsolePrinter.print_default(self.__operation_result)
+        MatrixConsolePrinter.print_default(self.operation_result)
 
     def mx_rref(self):
         print("\nOperace: RREF:")
@@ -215,8 +215,8 @@ class OperationExecution:
         print(" - " * (mx.m * 2))
 
         self.__current_operation = MatrixRREF(mx)
-        self.__operation_result = self.__current_operation.matrix_to_rref()
-        MatrixConsolePrinter.print_default(self.__operation_result)
+        self.operation_result = self.__current_operation.matrix_to_rref()
+        MatrixConsolePrinter.print_default(self.operation_result)
 
     def mx_inverse(self):
 
@@ -232,10 +232,10 @@ class OperationExecution:
         print(" - " * (mx.m * 2))
 
         self.__current_operation = MatrixInversion(mx)
-        self.__operation_result = self.__current_operation.calculate_inversion_of_matrix()
+        self.operation_result = self.__current_operation.calculate_inversion_of_matrix()
 
         if self.__current_operation.inversion_state:
-            MatrixConsolePrinter.print_default(self.__operation_result)
+            MatrixConsolePrinter.print_default(self.operation_result)
 
     def mx_rank(self):
         print("\n Operace: hodnost matice:")
@@ -250,8 +250,8 @@ class OperationExecution:
 
         self.__current_operation = MatrixREF(mx)
         mx_res = self.__current_operation.matrix_to_ref()
-        self.__operation_result = self.__current_operation.rank
-        print(self.__operation_result)
+        self.operation_result = self.__current_operation.rank
+        print(self.operation_result)
 
     def mx_determinant(self):
         print("\n Operace výpočet determinantu:")
@@ -265,6 +265,6 @@ class OperationExecution:
 
 
         self.__current_operation = MatrixDeterminant(mx);
-        self.__operation_result = self.__current_operation.calculate_determinant()
+        self.operation_result = self.__current_operation.calculate_determinant()
 
-        print(self.__operation_result)
+        print(self.operation_result)
