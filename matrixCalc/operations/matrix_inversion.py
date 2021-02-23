@@ -26,7 +26,7 @@ class MatrixInversion:
             return
         self.__calculate_ref();
 
-        if abs(self.__get_determinant()) < 10.0**((-1)*VALUE_OUTPUT_PRECISION): # menší než 0
+        if abs(self.__get_determinant()) < 10.0**((-1)*constants.VALUE_OUTPUT_PRECISION): # menší než 0
             print ("Determinant je nulový, matice nemá inverz.")
             return 
         self.__calculate_rref()
