@@ -1,4 +1,5 @@
-from matrix import *
+from matrix import Matrix
+
 class ElementaryOperations:
     """
     Základní maticové úpravy a operace
@@ -70,9 +71,9 @@ class ElementaryOperations:
 
             for i in range(0, mx.m):
                 for j in range(0, mx.n*2):
-                    if (i == j-mx.n):
+                    if i == j-mx.n:
                         mx_expanded.Data[i][j] = 1
-                    elif(j < mx.n):
+                    elif j < mx.n:
                         mx_expanded.Data[i][j] = mx.Data[i][j-mx.n]
 
             return mx_expanded
