@@ -11,17 +11,17 @@ def main_loop():
 
     user_interface = MainUserInterface()
 
-    # 1)
+    # 1) Nabídka volby operace
     operation = user_interface.operation_selection()
 
-    # 2)
+    # 2) Volba práce s daty
     data_load_function = user_interface.data_load_selection()
 
-    # 3)
+    # 3) Průběh operace
     operations_executor = OperationExecution(operation, data_load_function)
     operations_executor.execute()
    
-    # 4)
+    # 4) Nabídka uložení výstupních dat do souboru
     if(operations_executor.operation_result is not None): # Pokud se operace zdařila => nabídka uložení operace
         file_name = user_interface.data_store_selection()
         if file_name:
