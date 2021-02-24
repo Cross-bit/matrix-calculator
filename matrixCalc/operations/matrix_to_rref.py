@@ -2,7 +2,8 @@ from matrix import *
 from operations.elementary_operations import *
 from operations.matrix_to_ref import *
 from operations.matrix_determinant import MatrixDeterminant
-
+from matrix_print.matrix_console_printer import MatrixConsolePrinter as pc
+import constants
 
 class MatrixRREF:
 
@@ -36,9 +37,14 @@ class MatrixRREF:
             if(self.mx_rref.Data[0][0] != 0):
                 ElementaryOperations.multiply_row_by_scalar(self.mx, 0, 1/self.mx_rref.Data[0][0])
             return
-
+        if len(self.pivot_positions) == 0:
+            return
+        
         # Stačí projít všechny sloupce obsahující pivot
         for pivot_pos in reversed(self.pivot_positions):
+            pc.print_default(self.mx_rref)
+            print()
+
 
             # Projdu řádky od i-té pozice pivota až k prvnímu řádku
             for i in range(pivot_pos[0]-1, -1, -1):
@@ -46,14 +52,13 @@ class MatrixRREF:
                 pivot_val = self.mx_rref.Data[pivot_pos[0]][pivot_pos[1]] 
 
                 multiply_const = (-1) * self.mx_rref.Data[i][pivot_pos[1]]/pivot_val
-
+                
                 # Přičtu násobek(stačí průchod od pozice pivota)
                 for j in range(pivot_pos[1], self.mx_rref.n):
                     self.mx_rref.Data[i][j] += self.mx_rref.Data[pivot_pos[0]][j] * multiply_const
                     self.mx_rref.Data[pivot_pos[0]][j] /= pivot_val # normalizuji pivot
-
-                # Normalizuji dodatečně první řádek
-                ElementaryOperations.multiply_row_by_scalar(self.mx, 0, 1/self.mx_rref.Data[0][0])
-
-
+            
+            # Normalizuji dodatečně první řádek
+            if self.mx_rref.Data[0][pivot_pos[0]] > 10**(constants.VALUE_OUTPUT_PRECISION*(-1)):
+                ElementaryOperations.multiply_row_by_scalar(self.mx, 0, 1/self.mx_rref.Data[0][pivot_pos[0]])
 
