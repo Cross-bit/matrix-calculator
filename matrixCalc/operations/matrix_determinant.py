@@ -1,4 +1,4 @@
-from operations.matrix_to_ref import MatrixREF
+from operations.matrix_ref import MatrixREF
 
 class MatrixDeterminant:
 

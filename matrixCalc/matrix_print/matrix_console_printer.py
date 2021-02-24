@@ -8,7 +8,7 @@ class MatrixConsolePrinter:
     @staticmethod
     def print_default(matrix):
 
-        matrix_print_object = MatrixPrintObject(matrix, constants.FRACTION_OUTPUT, constants.VALUE_OUTPUT_PRECISION)
+        matrix_print_object = MatrixPrintObject(matrix, constants.FRACTION_OUTPUT, constants.OUTPUT_PRECISION)
         column_padding = ColumnPadding(matrix_print_object)
         padding_for_column = column_padding.get_padding_for_columns()
         
@@ -24,7 +24,7 @@ class MatrixConsolePrinter:
     @staticmethod
     def print_simple(matrix, get = False):
 
-        matrix_print_object = MatrixPrintObject (matrix, constants.FRACTION_OUTPUT, constants.VALUE_OUTPUT_PRECISION)
+        matrix_print_object = MatrixPrintObject (matrix, constants.FRACTION_OUTPUT, constants.OUTPUT_PRECISION)
 
         res = ''
         res += '\n'.join([' '.join([cell for cell in row]) for row in matrix_print_object.data])

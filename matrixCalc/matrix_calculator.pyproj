@@ -75,10 +75,10 @@
     <Compile Include="operations\matrix_addition.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="operations\matrix_to_rref.py">
+    <Compile Include="operations\matrix_rref.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="operations\matrix_to_ref.py">
+    <Compile Include="operations\matrix_ref.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="operations\matrix_transposition.py">

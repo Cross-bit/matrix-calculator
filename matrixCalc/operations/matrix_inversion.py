@@ -1,5 +1,5 @@
-from operations.matrix_to_ref import MatrixREF
-from operations.matrix_to_rref import MatrixRREF
+from operations.matrix_ref import MatrixREF
+from operations.matrix_rref import MatrixRREF
 from operations.matrix_determinant import MatrixDeterminant
 from operations.elementary_operations import ElementaryOperations
 from matrix import Matrix
@@ -26,7 +26,7 @@ class MatrixInversion:
             return
         self.__calculate_ref();
 
-        if abs(self.__get_determinant()) < 10.0**((-1)*constants.VALUE_OUTPUT_PRECISION): # menší než 0
+        if abs(self.__get_determinant()) < 10.0**((-1)*constants.OUTPUT_PRECISION): # menší než 0
             print ("Determinant je nulový, matice nemá inverz.")
             return 
         self.__calculate_rref()
