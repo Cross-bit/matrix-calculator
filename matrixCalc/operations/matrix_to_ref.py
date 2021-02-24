@@ -44,7 +44,7 @@ class MatrixREF:
         return Matrix(self.mx.m, self.mx.n, self.mx_ref.Data)
     
     def __check_if_pivot_position_is_valid(self, pivot_pos):
-        return (pivot_pos[0] != 0 and pivot_pos[1] != 0)
+        return (pivot_pos[0] != 0 or pivot_pos[1] != 0)
 
     def __switch_zero_pivot_row(self, pivot_i_position, new_pivot_i_position):
         ElementaryOperations.exchange_rows(self.mx_ref, pivot_i_position, new_pivot_i_position)
