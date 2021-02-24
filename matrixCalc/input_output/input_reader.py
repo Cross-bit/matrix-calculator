@@ -46,7 +46,7 @@ class InputReader:
                 input_row = input()
                 parsed_data_arr = self.__try_parse_matrix_input(input_row)
                 if(parsed_data_arr and len(parsed_data_arr) == mx.n):
-                    mx.Data[ctr] = parsed_data_arr
+                    mx.data[ctr] = parsed_data_arr
                     continue_read_row = False
                 else:
                     print("Neplatně zadaný řádek matice, zkuste to znovu: ")

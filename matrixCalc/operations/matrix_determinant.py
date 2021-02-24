@@ -25,7 +25,7 @@ class MatrixDeterminant:
                 return 0.0
 
             for i in range(dimensions[0]):
-                self.determinant *= mx_ref.Data[i][i]
+                self.determinant *= mx_ref.data[i][i]
 
             self.determinant *= determinant_sign
             return self.determinant

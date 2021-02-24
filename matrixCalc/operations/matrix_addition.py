@@ -16,6 +16,6 @@ class MatrixAddition:
 
         for j in range(self.matrix_sum.n):
             for i in range(self.matrix_sum.m):
-                self.matrix_sum.Data[i][j] = self.mx1.Data[i][j] + (self.mx2.Data[i][j] * (-1 if substract else 1))
+                self.matrix_sum.data[i][j] = self.mx1.data[i][j] + (self.mx2.data[i][j] * (-1 if substract else 1))
 
         return self.matrix_sum

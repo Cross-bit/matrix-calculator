@@ -11,7 +11,7 @@ class MatrixInversion:
         self.mx = matrix
         self.mx_inv = Matrix(matrix.m, matrix.n)
         self.mx_ref_expanded = None
-        self.mx_inv.Data = matrix.Data
+        self.mx_inv.data = matrix.data
         self.__mx_ref_operation = None
         self.__mx_rref_operation = None
         self.inversion_state = False
@@ -34,7 +34,7 @@ class MatrixInversion:
         self.__mx_rref_operation.matrix_ref_to_rref()
 
         for i in range(0, self.mx_ref_expanded.m):
-            self.mx_inv.Data[i] = self.mx_ref_expanded.Data[i][self.mx_inv.n:self.mx_ref_expanded.n]
+            self.mx_inv.data[i] = self.mx_ref_expanded.data[i][self.mx_inv.n:self.mx_ref_expanded.n]
 
         self.inversion_state = True
 

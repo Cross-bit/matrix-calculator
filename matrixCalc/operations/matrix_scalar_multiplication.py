@@ -7,7 +7,7 @@ class MatrixScalarMultiplication:
         self.mx = matrix
         self.scalar = scalar
         self.res_mx = Matrix(matrix.m, matrix.n)
-        self.res_mx.Data = matrix.Data
+        self.res_mx.data = matrix.data
 
     def multiply(self):
 

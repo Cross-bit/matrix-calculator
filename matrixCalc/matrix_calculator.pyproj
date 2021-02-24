@@ -48,9 +48,6 @@
     <Compile Include="matrix_print\matrix_console_printer.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="matrix_generator.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="matrix_print\__init__.py">
       <SubType>Code</SubType>
     </Compile>

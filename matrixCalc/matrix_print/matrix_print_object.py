@@ -8,7 +8,7 @@ class MatrixPrintObject:
         self.round_to = round_to
         self.use_frac = use_fraction
         self.row_filter = row_filter # odstranit řádek, podle nějakého specifika
-        self.data = self.__convert_data_to_string(matrix.Data)
+        self.data = self.__convert_data_to_string(matrix.data)
 
 
     def __convert_data_to_string(self, matrix_data):

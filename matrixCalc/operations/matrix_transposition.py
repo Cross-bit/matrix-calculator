@@ -9,5 +9,5 @@ class MatrixTransposition:
     def transpose(self):
         for j in range(self.mx.n):
             for i in range(self.mx.m):
-                self.mx_transposed.Data[j][i] = self.mx.Data[i][j]
+                self.mx_transposed.data[j][i] = self.mx.data[i][j]
         return self.mx_transposed

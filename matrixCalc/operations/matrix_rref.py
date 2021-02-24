@@ -8,8 +8,7 @@ class MatrixRREF:
 
     def __init__(self, matrix):
         self.mx = matrix
-        self.mx_rref = Matrix(matrix.m, matrix.n)
-        self.mx_rref.Data = matrix.Data
+        self.mx_rref = Matrix(matrix.m, matrix.n, matrix.data) 
         self.pivot_positions = []
         self.rank = 0
         self.__matrix_ref = None
@@ -33,8 +32,8 @@ class MatrixRREF:
 
         # edgecase pivot pouze v prvním řádku nebo se jedná o číslo
         if len(self.pivot_positions) == 1:
-            if(self.mx_rref.Data[0][self.pivot_positions[0][1]] != 0):
-                ElementaryOperations.multiply_row_by_scalar(self.mx, 0, 1/self.mx_rref.Data[0][self.pivot_positions[0][1]])
+            if(self.mx_rref.data[0][self.pivot_positions[0][1]] != 0):
+                ElementaryOperations.multiply_row_by_scalar(self.mx, 0, 1/self.mx_rref.data[0][self.pivot_positions[0][1]])
             return
         if len(self.pivot_positions) == 0:
             return
@@ -45,16 +44,16 @@ class MatrixRREF:
             # Projdu řádky od i-té pozice pivota až k prvnímu řádku
             for i in range(pivot_pos[0]-1, -1, -1):
 
-                pivot_val = self.mx_rref.Data[pivot_pos[0]][pivot_pos[1]] 
+                pivot_val = self.mx_rref.data[pivot_pos[0]][pivot_pos[1]] 
 
-                multiply_const = (-1) * self.mx_rref.Data[i][pivot_pos[1]]/pivot_val
+                multiply_const = (-1) * self.mx_rref.data[i][pivot_pos[1]]/pivot_val
                 
                 # Přičtu násobek (stačí průchod od pozice pivot_pos[1])
                 for j in range(pivot_pos[1], self.mx_rref.n):
-                    self.mx_rref.Data[i][j] += self.mx_rref.Data[pivot_pos[0]][j] * multiply_const
-                    self.mx_rref.Data[pivot_pos[0]][j] /= pivot_val # normalizuji pivot
+                    self.mx_rref.data[i][j] += self.mx_rref.data[pivot_pos[0]][j] * multiply_const
+                    self.mx_rref.data[pivot_pos[0]][j] /= pivot_val # normalizuji pivot
             
         # Normalizuji dodatečně první řádek
-        if abs(self.mx_rref.Data[0][self.pivot_positions[0][1]]) > 10.0**(constants.OUTPUT_PRECISION*(-1)):
-            ElementaryOperations.multiply_row_by_scalar(self.mx, 0, 1/self.mx_rref.Data[0][self.pivot_positions[0][1]])
+        if abs(self.mx_rref.data[0][self.pivot_positions[0][1]]) > 10.0**(constants.OUTPUT_PRECISION*(-1)):
+            ElementaryOperations.multiply_row_by_scalar(self.mx, 0, 1/self.mx_rref.data[0][self.pivot_positions[0][1]])
 

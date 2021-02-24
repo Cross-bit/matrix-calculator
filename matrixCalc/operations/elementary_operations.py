@@ -18,7 +18,7 @@ class ElementaryOperations:
             raise Exception("Indexy sahají mimo rozsah matice!")
             return
         for j in range(mx.n):
-            mx.Data[row1][j], mx.Data[row2][j] = mx.Data[row2][j], mx.Data[row1][j]
+            mx.data[row1][j], mx.data[row2][j] = mx.data[row2][j], mx.data[row1][j]
 
     @staticmethod 
     def multiply_row_by_scalar(mx, row, scalar):
@@ -28,7 +28,7 @@ class ElementaryOperations:
         if(row >= mx.m or row < 0):
             raise Exception("Řádek matice neexistuje!")
         for j in range(mx.n):
-            mx.Data[row][j] *= scalar
+            mx.data[row][j] *= scalar
 
     @staticmethod 
     def add_two_rows(mx, row1, row2):
@@ -53,7 +53,7 @@ class ElementaryOperations:
 
         for i in range(start_col, mx.n):
             for j in range(start_row, mx.m):
-                if(mx.Data[j][i] != 0):
+                if(mx.data[j][i] != 0):
                     return (j, i)
 
         return (0, 0)
@@ -72,9 +72,11 @@ class ElementaryOperations:
             for i in range(0, mx.m):
                 for j in range(0, mx.n*2):
                     if i == j-mx.n:
-                        mx_expanded.Data[i][j] = 1
+                        mx_expanded.data[i][j] = 1
                     elif j < mx.n:
-                        mx_expanded.Data[i][j] = mx.Data[i][j-mx.n]
+                        mx_expanded.data[i][j] = mx.data[i][j-mx.n]
+                    else:
+                        mx_expanded.data[i][j] = 0
 
             return mx_expanded
         except:

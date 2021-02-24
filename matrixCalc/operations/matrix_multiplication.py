@@ -15,8 +15,8 @@ class MatrixMultiplication:
             for j in range(self.mx2.n):
                 cell_value = 0
                 for k in range(self.mx1.n):
-                   cell_value += self.mx1.Data[i][k] * self.mx2.Data[k][j]
-                self.mx_res.Data[i][j] = cell_value
+                   cell_value += self.mx1.data[i][k] * self.mx2.data[k][j]
+                self.mx_res.data[i][j] = cell_value
 
         return self.mx_res
 

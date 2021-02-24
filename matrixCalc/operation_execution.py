@@ -22,9 +22,10 @@ class OperationExecution:
     def __init__(self, mx_operation_method, load_data_method):
 
         self.__read_mx_data = load_data_method;
+        self.__operation = mx_operation_method; # Pointer na metodu zprostředkující danou operaci 
+
         self.input_reader = InputReader()
         self.output_writer = OutputWriter()
-        self.__operation = mx_operation_method; # Pointer na metodu zprostředkující danou operaci 
 
         self.__current_operation = None # Reference objektu momentální operace z modulu operations
         self.operation_result = None
@@ -35,11 +36,11 @@ class OperationExecution:
     def execute(self):
         self.__operation(self);
 
-    def write_mx_data_to_file(self, file_name):
-        if(file_name != ""):
-            self.output_writer.store_output(self.operation_result, file_name)
-        else:
-            raise Exception("Název souboru je prázdný!")
+    def write_result_to_file(self, file_name):
+        if(file_name == ""): raise Exception("Název souboru je prázdný!")
+        if(self.operation_result is None): raise Exception("Výsledek operace je neplatný!")
+        self.output_writer.store_output(self.operation_result, file_name)
+            
 
     def __get_mx_dims_console(self):
         print("Zadejte rozměry matice celými čísly, ve tvaru: mxn \n(tedy např. 2x2):")
@@ -59,7 +60,7 @@ class OperationExecution:
             if self.dims_check(dims):
                 return mx
             else:
-                print("Zkuste prosím jiný soubor:")
+                print("Rozměry matice jsou neplatné, zkuste prosím jiný soubor:")
 
 
         return self.load_data_from_file();
@@ -123,7 +124,7 @@ class OperationExecution:
         self.operation_result = self.__current_operation.calculate_sum(substract = True)
         MatrixConsolePrinter.print_default(self.operation_result)
 
-    def mx_scal(self):
+    def mx_scalar_multiply(self):
 
         print("\nOperace násobení skalárem:")
 
@@ -146,7 +147,7 @@ class OperationExecution:
         self.operation_result = self.__current_operation.multiply()
         MatrixConsolePrinter.print_default(self.operation_result)
 
-    def mx_multi(self):
+    def mx_multiply(self):
 
         print("\nOperace: Maticové Násobení:")
 
@@ -170,7 +171,7 @@ class OperationExecution:
         self.operation_result = self.__current_operation.multiply()
         MatrixConsolePrinter.print_default(self.operation_result)
 
-    def mx_trans(self):
+    def mx_transpose(self):
         print("\nOperace: Transpozice:")
 
         print("\nZadání matice:")
