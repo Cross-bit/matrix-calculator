@@ -1,5 +1,4 @@
-from matrix import *
-import math
+from matrix import Matrix
 from matrix_print.matrix_print_object import MatrixPrintObject
 from matrix_print.column_padding import ColumnPadding
 import constants
@@ -9,7 +8,7 @@ class MatrixConsolePrinter:
     @staticmethod
     def print_default(matrix):
 
-        matrix_print_object = MatrixPrintObject(matrix, constants.VALUE_OUTPU_FORMAT, constants.VALUE_OUTPUT_PRECISION)
+        matrix_print_object = MatrixPrintObject(matrix, constants.FRACTION_OUTPUT, constants.VALUE_OUTPUT_PRECISION)
         column_padding = ColumnPadding(matrix_print_object)
         padding_for_column = column_padding.get_padding_for_columns()
         
@@ -25,7 +24,7 @@ class MatrixConsolePrinter:
     @staticmethod
     def print_simple(matrix, get = False):
 
-        matrix_print_object = MatrixPrintObject (matrix, constants.VALUE_OUTPU_FORMAT, constants.VALUE_OUTPUT_PRECISION)
+        matrix_print_object = MatrixPrintObject (matrix, constants.FRACTION_OUTPUT, constants.VALUE_OUTPUT_PRECISION)
 
         res = ''
         res += '\n'.join([' '.join([cell for cell in row]) for row in matrix_print_object.data])

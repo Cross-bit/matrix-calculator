@@ -1,6 +1,6 @@
+from matrix_print.matrix_console_printer import MatrixConsolePrinter as matrix_printer
 from helpers import Helpers
 import constants
-from matrix_print.matrix_console_printer import MatrixConsolePrinter as matrix_printer
 import os.path
 
 class InputReader:

@@ -1,18 +1,18 @@
+from matrix_print.matrix_console_printer import MatrixConsolePrinter
 from matrix import Matrix
 from helpers import Helpers
 import constants
 import os
-from matrix_print.matrix_console_printer import MatrixConsolePrinter
 
 
 class OutputWriter:
 
-    def write_to_file(self, data_to_print, file_name):
+    def store_output(self, data_to_print, file_name):
         file_name = Helpers.correnct_file_name_exstention(file_name)
         output_file_path  = '{0}/../{1}/{2}'.format(os.path.dirname(__file__), constants.OUTPUT_FILES_DIR, file_name)
-        self.__write_mx_to_file(data_to_print, output_file_path)
+        self.__write_data(data_to_print, output_file_path)
 
-    def __write_mx_to_file(self, data_to_print, path_to_file):
+    def __write_data(self, data_to_print, path_to_file):
         try:
             data_string = ''
             if(type(data_to_print) is Matrix):

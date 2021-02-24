@@ -37,7 +37,7 @@ class OperationExecution:
 
     def write_mx_data_to_file(self, file_name):
         if(file_name != ""):
-            self.output_writer.write_to_file(self.operation_result, file_name)
+            self.output_writer.store_output(self.operation_result, file_name)
         else:
             raise Exception("Název souboru je prázdný!")
 
