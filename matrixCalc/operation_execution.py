@@ -56,7 +56,7 @@ class OperationExecution:
             mx = Matrix(len(mx_data), len(mx_data[0]), mx_data)
             dims = (mx.m, mx.n)
 
-            if(self.dims_check(dims)):
+            if self.dims_check(dims):
                 return mx
             else:
                 print("Zkuste prosím jiný soubor:")

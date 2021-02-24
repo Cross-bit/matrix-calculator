@@ -19,12 +19,12 @@ class Helpers:
         return is_valid
 
     @staticmethod
-    def invalid_dims_multiplication(sec_mx_dims, mx):
+    def invalid_dims_multiplication(second_mx_dims, mx):
         """
         sec_mx_dims: Rozměry matice(v podobě pole: [m, n]; m – počet řádků, n – počet sloupců matice)
         mx: Porovnávaná matice
         """
-        is_valid = bool(sec_mx_dims[0] == mx.m)
+        is_valid = bool(second_mx_dims[0] == mx.n)
         if not (is_valid):
             print("Počet sloupců první matice se v součinu musí rovnat počtu řádků druhé!")
         return is_valid

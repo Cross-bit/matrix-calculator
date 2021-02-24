@@ -13,7 +13,7 @@ class ElementaryOperations:
         Výměna řádků matice. row1, row2 odpovídají indexům řádků, které mají být prohozeny (počínaje 0).
         V případě poskytnutí špatných rozsahů indexů hodí výjimku.
         """
-        if(row1 >= mx.m or row2 >= mx.m or row1 < 0 or row2 < 0):
+        if row1 >= mx.m or row2 >= mx.m or row1 < 0 or row2 < 0:
             raise Exception("Indexy sahají mimo rozsah matice!")
             return
         for j in range(mx.n):
@@ -47,7 +47,7 @@ class ElementaryOperations:
          - start_col
          Jinak vrátí (0, 0).
         """
-        if(start_row >= mx.m or start_col >= mx.n or start_row < 0 or start_col < 0):
+        if start_row >= mx.m or start_col >= mx.n or start_row < 0 or start_col < 0:
             raise Exception("Souřadnice jsou mimo rozsah matice!")
 
         for i in range(start_col, mx.n):

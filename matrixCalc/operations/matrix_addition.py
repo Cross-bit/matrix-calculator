@@ -10,7 +10,6 @@ class MatrixAddition:
 
     def calculate_sum(self, substract = False):
         
-
         if not ElementarOP.check_if_matrix_dims_are_same(self.mx1, self.mx2):
             print("Zadané matice nejsou stejných roměrů!")
             return

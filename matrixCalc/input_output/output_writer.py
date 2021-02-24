@@ -15,7 +15,7 @@ class OutputWriter:
     def __write_data(self, data_to_print, path_to_file):
         try:
             data_string = ''
-            if(type(data_to_print) is Matrix):
+            if type(data_to_print) is Matrix:
                 data_string = MatrixConsolePrinter.print_simple(data_to_print, get = True)
             else:
                 data_string = str(data_to_print)

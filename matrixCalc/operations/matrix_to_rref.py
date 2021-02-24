@@ -1,8 +1,7 @@
-from matrix import *
-from operations.elementary_operations import *
-from operations.matrix_to_ref import *
+from matrix import Matrix
+from operations.elementary_operations import ElementaryOperations
+from operations.matrix_to_ref import MatrixREF
 from operations.matrix_determinant import MatrixDeterminant
-from matrix_print.matrix_console_printer import MatrixConsolePrinter as pc
 import constants
 
 class MatrixRREF:
@@ -56,6 +55,6 @@ class MatrixRREF:
                     self.mx_rref.Data[pivot_pos[0]][j] /= pivot_val # normalizuji pivot
             
         # Normalizuji dodatečně první řádek
-        if abs(self.mx_rref.Data[0][self.pivot_positions[0][1]]) > 10**(constants.VALUE_OUTPUT_PRECISION*(-1)):
+        if abs(self.mx_rref.Data[0][self.pivot_positions[0][1]]) > 10.0**(constants.VALUE_OUTPUT_PRECISION*(-1)):
             ElementaryOperations.multiply_row_by_scalar(self.mx, 0, 1/self.mx_rref.Data[0][self.pivot_positions[0][1]])
 

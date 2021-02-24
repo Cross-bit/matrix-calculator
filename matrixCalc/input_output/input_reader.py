@@ -38,7 +38,7 @@ class InputReader:
     def read_matrix_user_input(self, mx):
         ctr = 0
 
-        while(ctr < mx.m):
+        while ctr < mx.m:
             continue_read_row = True
 
             # Čtení řádku

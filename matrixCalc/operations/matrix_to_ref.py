@@ -1,6 +1,6 @@
 from operations.elementary_operations import ElementaryOperations
 from matrix import Matrix
-
+import constants
 
 class MatrixREF:
 
@@ -17,10 +17,10 @@ class MatrixREF:
         pivot_i_position = 0 # pozice v řádku
         pivot_j_position = 0 # pozice v sloupci
 
-        while (pivot_j_position < self.mx.n and pivot_i_position < self.mx.m):
+        while pivot_j_position < self.mx.n and pivot_i_position < self.mx.m:
             
             # Pokud je pivot 0, tak je nutné prohodit řádky
-            if(self.mx_ref.Data[pivot_i_position][pivot_j_position] == 0):
+            if abs(self.mx_ref.Data[pivot_i_position][pivot_j_position]) > 10.0**(constants.VALUE_OUTPUT_PRECISION*(-1)):
                 new_pivot_pos = ElementaryOperations.find_first_most_left_value(self.mx_ref, pivot_i_position, pivot_j_position)
                 # Už nejsou další pivoty, matice je odstupňovaná
                 if not self.__check_if_pivot_position_is_valid(new_pivot_pos):
