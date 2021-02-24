@@ -33,6 +33,8 @@ class MatrixPrintObject:
 
 
     def __format_cell_value(self, cell_value):
+        if(abs(cell_value) < 10.0**(constants.OUTPUT_PRECISION*(-1))):
+            cell_value = 0.0
         rounded_val = round(cell_value, self.round_to)
         return self.__dec_to_frac(rounded_val) if self.use_frac else rounded_val
     
