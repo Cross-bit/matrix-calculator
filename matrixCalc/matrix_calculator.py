@@ -1,9 +1,6 @@
-from matrix import *
-from matrix_print.matrix_console_printer import MatrixConsolePrinter as matrix_printer
-from input_output.input_reader import *
-from main_user_interface import MainUserInterface
 from operation_execution import OperationExecution
-
+from main_user_interface import MainUserInterface
+from matrix import Matrix
 
 
 # Hlavní blok programu
