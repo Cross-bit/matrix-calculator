@@ -8,6 +8,8 @@ class MatrixDeterminant:
 
     def calculate_determinant(self):
 
+        if not self.__dimension_check((self.mx.m, self.mx.n)): return 0.0
+
         matrix_ref_operation = MatrixREF(self.mx)
         mx_ref = matrix_ref_operation.matrix_to_ref()
 
@@ -19,10 +21,7 @@ class MatrixDeterminant:
             if dimensions == -1: 
                 dimensions = (mx_ref.m, mx_ref.n)
 
-
-            if dimensions[0] != dimensions[1]:
-                print("Matice musí být pro výpočet determinantu čtvercová.")
-                return 0.0
+            if not self.__dimension_check(dimensions): return 0.0
 
             for i in range(dimensions[0]):
                 self.determinant *= mx_ref.data[i][i]
@@ -32,3 +31,9 @@ class MatrixDeterminant:
         except:
             print("Při výpočtu determinantu došlo k chybě!")
             return 0.0
+
+    def __dimension_check(self, dimensions):
+        if dimensions[0] != dimensions[1]:
+            print("Matice musí být pro výpočet determinantu čtvercová.");
+            return False
+        return True

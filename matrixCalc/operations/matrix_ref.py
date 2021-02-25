@@ -51,8 +51,8 @@ class MatrixREF:
         for i in range(pivot_i_position+1, self.mx.m):
             multiply_const = (-1)*self.mx_ref.data[i][pivot_j_position] / self.mx_ref.data[pivot_i_position][pivot_j_position]
 
-            for s in range(pivot_j_position, self.mx.n): # Přičtení násobku řádku
-                self.mx_ref.data[i][s] = self.mx_ref.data[i][s] + self.mx_ref.data[pivot_i_position][s] * multiply_const            
+            for c in range(pivot_j_position, self.mx.n): # Přičtení násobku řádku
+                self.mx_ref.data[i][c] = self.mx_ref.data[i][c] + self.mx_ref.data[pivot_i_position][c] * multiply_const            
 
 
             

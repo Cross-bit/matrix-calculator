@@ -19,6 +19,7 @@ class MatrixInversion:
 
     def calculate_inversion_of_matrix(self):
 
+        #Rozšíření o jednotkovou matici
         self.mx_ref_expanded = ElementaryOperations.expand_for_identity_matrix(self.mx)
         
         if self.mx_ref_expanded is None:

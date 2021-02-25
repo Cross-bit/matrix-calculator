@@ -225,8 +225,7 @@ class OperationExecution:
 
         print("\nZadání matice:")
         print("¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯")
-        mx = Matrix(10, 10)#self.__read_mx_data(self)
-        mx.generate_random_matrix_data()
+        mx = self.__read_mx_data(self)
 
         MatrixConsolePrinter.print_default(mx)
         print("~(A^(-1))~")
