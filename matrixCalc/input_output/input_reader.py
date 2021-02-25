@@ -5,17 +5,6 @@ import os.path
 
 class InputReader:
 
-    def __init__(self):
-        self.input = ""
-        self.matrix_dims = ""
-
-    def __try_parse_matrix_input(self, input_data):
-        try:
-            input_data_arr = input_data.split()
-            return list([float(input_value.strip()) for input_value in input_data_arr])
-        except:
-            return False
-
     def read_matrix_dimensions(self, validity_condition):
         """ 
         check_if_valid – Očekává funkci jako: lambda x: True/False
@@ -44,7 +33,7 @@ class InputReader:
             # Čtení řádku
             while(continue_read_row):
                 input_row = input()
-                parsed_data_arr = self.__try_parse_matrix_input(input_row)
+                parsed_data_arr = self.__try_parse_matrix_row_input(input_row)
                 if(parsed_data_arr and len(parsed_data_arr) == mx.n):
                     mx.data[ctr] = parsed_data_arr
                     continue_read_row = False
@@ -76,11 +65,18 @@ class InputReader:
             file_name = Helpers.correnct_file_name_exstention(file_name)
             path_to_file = '{0}/../{1}/{2}'.format(os.path.dirname(__file__), constants.INPUT_FILES_DIR, file_name)
 
+            row_lenght_check = -1
             with open(path_to_file, "r") as file:
                 mx_raw_data = [];
                 for line in file.readlines():
                     if line.strip():
-                        mx_data_arr.append([float(val) for val in line.split()])
+                        row_data = self.__try_parse_matrix_row_input(line)
+                        if row_lenght_check == -1: 
+                            row_lenght_check = len(row_data)
+                        elif row_lenght_check != len(row_data):
+                            print("Načtení matice ze souboru se nezdařilo, řádky mají různou délku.")
+                            return False
+                        mx_data_arr.append(row_data)
 
             return mx_data_arr
         except:
@@ -89,10 +85,17 @@ class InputReader:
 
     def __try_parse_matrix_dims(self, dim_string):
         try:
-            dimensions = list([int(x) for x in dim_string.split("x")])
+            dimensions = list([int(x) for x in dim_string.lower().split("x")])
             if(len(dimensions) != 2 or dimensions[0] < 1 or dimensions[1] < 1):
                 return False
             return dimensions
+        except:
+            return False
+
+    def __try_parse_matrix_row_input(self, input_data):
+        try:
+            input_data_arr = input_data.split()
+            return list([float(input_value.strip()) for input_value in input_data_arr])
         except:
             return False
 
