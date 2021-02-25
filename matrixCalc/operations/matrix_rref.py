@@ -24,11 +24,11 @@ class MatrixRREF:
         
 
         # Zpětný průchod maticí pro získání RREF tvaru
-        self.__matrix_ref_to_rref()
+        self.matrix_ref_to_rref()
          
         return self.mx_rref
 
-    def __matrix_ref_to_rref(self):
+    def matrix_ref_to_rref(self):
 
         # edgecase pivot pouze v prvním řádku nebo se jedná o číslo
         if len(self.pivot_positions) == 1:

@@ -178,6 +178,8 @@ class OperationExecution:
         print("¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯")
         mx = self.__read_mx_data(self)
 
+        MatrixConsolePrinter.print_default(mx)
+        print("~(A^(T))~")
         print(" - " * (mx.m * 2))
 
         self.__current_operation = MatrixTransposition(mx)

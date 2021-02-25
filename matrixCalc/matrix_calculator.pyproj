@@ -90,25 +90,11 @@
     <Compile Include="input_output\output_writer.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="tests\helper_functions.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tests\test_operations.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tests\test_operation_execution.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tests\__init__.py">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="input_output\" />
     <Folder Include="matrix_print\" />
     <Folder Include="operations\" />
-    <Folder Include="tests\" />
-    <Folder Include="tests\test_data_addition\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
