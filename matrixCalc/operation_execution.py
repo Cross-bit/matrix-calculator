@@ -140,7 +140,6 @@ class OperationExecution:
         MatrixConsolePrinter.print_default(mx)
         print("*(",scalar,")", sep="")
 
-        print()
 
         print(" - " * (mx.m * 2))
         self.__current_operation = MatrixScalarMultiplication(mx, scalar)
