@@ -5,7 +5,7 @@ class ElementaryOperations:
     Základní maticové úpravy a operace
     """
     @staticmethod
-    def check_if_matrix_dims_are_same(mx1, mx2):
+    def check_if_matrix_dims_equal(mx1, mx2):
         return True if(mx1.m == mx2.m and mx1.n == mx2.n) else False
 
     @staticmethod
@@ -51,10 +51,10 @@ class ElementaryOperations:
         if start_row >= mx.m or start_col >= mx.n or start_row < 0 or start_col < 0:
             raise Exception("Souřadnice jsou mimo rozsah matice!")
 
-        for i in range(start_col, mx.n):
-            for j in range(start_row, mx.m):
-                if(mx.data[j][i] != 0):
-                    return (j, i)
+        for j in range(start_col, mx.n): # j - sloupec, i řádek
+            for i in range(start_row, mx.m):
+                if(mx.data[i][j] != 0):
+                    return (i, j)
 
         return (0, 0)
 

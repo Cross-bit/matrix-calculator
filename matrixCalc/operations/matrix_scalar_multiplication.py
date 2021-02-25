@@ -1,4 +1,4 @@
-from operations.elementary_operations import ElementaryOperations
+from elementary_operations import ElementaryOperations
 from matrix import Matrix
 
 class MatrixScalarMultiplication:
@@ -9,7 +9,7 @@ class MatrixScalarMultiplication:
         self.res_mx = Matrix(matrix.m, matrix.n)
         self.res_mx.data = matrix.data
 
-    def multiply(self):
+    def calculate_scalar_multiplication(self):
 
         for i in range(self.mx.m):
             ElementaryOperations.multiply_row_by_scalar(self.res_mx, i, self.scalar)

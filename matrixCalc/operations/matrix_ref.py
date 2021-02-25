@@ -1,4 +1,4 @@
-from operations.elementary_operations import ElementaryOperations
+from elementary_operations import ElementaryOperations
 from matrix import Matrix
 import constants
 
@@ -12,7 +12,7 @@ class MatrixREF:
         self.determinant = 1.0
         self.determinant_sign = 1
 
-    def matrix_to_ref(self):
+    def calculate_ref(self):
 
         pivot_i_position = 0 # pozice v řádku
         pivot_j_position = 0 # pozice v sloupci

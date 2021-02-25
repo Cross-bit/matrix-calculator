@@ -29,7 +29,7 @@
     <Compile Include="main_user_interface.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="operations\elementary_operations.py">
+    <Compile Include="elementary_operations.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="helpers.py">

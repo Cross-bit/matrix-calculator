@@ -6,7 +6,7 @@ from operations.matrix_rref import MatrixRREF
 from operations.matrix_transposition import MatrixTransposition
 from operations.matrix_scalar_multiplication import MatrixScalarMultiplication
 from operations.matrix_multiplication import MatrixMultiplication
-from operations.elementary_operations import ElementaryOperations
+from elementary_operations import ElementaryOperations
 
 from matrix import Matrix
 from helpers import Helpers
@@ -142,9 +142,9 @@ class OperationExecution:
 
         print()
 
-        print("-" * (mx.m * 2 + 1))
+        print(" - " * (mx.m * 2))
         self.__current_operation = MatrixScalarMultiplication(mx, scalar)
-        self.operation_result = self.__current_operation.multiply()
+        self.operation_result = self.__current_operation.calculate_multiplication()
         MatrixConsolePrinter.print_default(self.operation_result)
 
     def mx_multiply(self):
@@ -166,9 +166,9 @@ class OperationExecution:
         print("~(*)~")
         MatrixConsolePrinter.print_default(mx2)
 
-        print("-" * (mx2.m * 2 + 1))
+        print(" - " * (mx2.m * 2))
         self.__current_operation = MatrixMultiplication(mx1, mx2)
-        self.operation_result = self.__current_operation.multiply()
+        self.operation_result = self.__current_operation.calculate_multiplication()
         MatrixConsolePrinter.print_default(self.operation_result)
 
     def mx_transpose(self):
@@ -178,10 +178,10 @@ class OperationExecution:
         print("¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯")
         mx = self.__read_mx_data(self)
 
-        print("-" * (mx.m * 2 + 1))
+        print(" - " * (mx.m * 2))
 
         self.__current_operation = MatrixTransposition(mx)
-        self.operation_result = self.__current_operation.transpose()
+        self.operation_result = self.__current_operation.calculate_transpose()
 
         MatrixConsolePrinter.print_default(self.operation_result)
 
@@ -196,10 +196,10 @@ class OperationExecution:
         MatrixConsolePrinter.print_default(mx)
         print("~(REF)~")
 
-        print("-" * (mx.m * 2 + 1))
+        print(" - " * (mx.m * 2))
 
         self.__current_operation = MatrixREF(mx)
-        self.operation_result = self.__current_operation.matrix_to_ref()
+        self.operation_result = self.__current_operation.calculate_ref()
 
         MatrixConsolePrinter.print_default(self.operation_result)
 
@@ -216,7 +216,7 @@ class OperationExecution:
         print(" - " * (mx.m * 2))
 
         self.__current_operation = MatrixRREF(mx)
-        self.operation_result = self.__current_operation.matrix_to_rref()
+        self.operation_result = self.__current_operation.calculate_rref()
         MatrixConsolePrinter.print_default(self.operation_result)
 
     def mx_inverse(self):
@@ -250,7 +250,7 @@ class OperationExecution:
         print("~(rank(A))~")
 
         self.__current_operation = MatrixREF(mx)
-        mx_res = self.__current_operation.matrix_to_ref()
+        mx_res = self.__current_operation.calculate_ref()
         self.operation_result = self.__current_operation.rank
         print(self.operation_result)
 

@@ -1,7 +1,7 @@
 from operations.matrix_ref import MatrixREF
 from operations.matrix_rref import MatrixRREF
 from operations.matrix_determinant import MatrixDeterminant
-from operations.elementary_operations import ElementaryOperations
+from elementary_operations import ElementaryOperations
 from matrix import Matrix
 import constants
 
@@ -47,7 +47,7 @@ class MatrixInversion:
 
     def __calculate_ref(self):
         self.__mx_ref_operation = MatrixREF(self.mx_ref_expanded)
-        self.mx_ref_expanded = self.__mx_ref_operation.matrix_to_ref()
+        self.mx_ref_expanded = self.__mx_ref_operation.calculate_ref()
 
     def __calculate_rref(self):
         self.__mx_rref_operation = MatrixRREF(self.mx_ref_expanded)

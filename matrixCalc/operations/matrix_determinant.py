@@ -11,7 +11,7 @@ class MatrixDeterminant:
         if not self.__dimension_check((self.mx.m, self.mx.n)): return 0.0
 
         matrix_ref_operation = MatrixREF(self.mx)
-        mx_ref = matrix_ref_operation.matrix_to_ref()
+        mx_ref = matrix_ref_operation.calculate_ref()
 
         return self.get_determinant(mx_ref, determinant_sign = matrix_ref_operation.determinant_sign)
 

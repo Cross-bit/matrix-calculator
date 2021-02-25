@@ -6,7 +6,7 @@ class MatrixTransposition:
         self.mx = matrix
         self.mx_transposed = Matrix(matrix.n, matrix.m)
 
-    def transpose(self):
+    def calculate_transpose(self):
         for j in range(self.mx.n):
             for i in range(self.mx.m):
                 self.mx_transposed.data[j][i] = self.mx.data[i][j]

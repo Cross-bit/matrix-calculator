@@ -1,5 +1,5 @@
 from matrix import Matrix
-from operations.elementary_operations import ElementaryOperations
+from elementary_operations import ElementaryOperations
 from operations.matrix_ref import MatrixREF
 from operations.matrix_determinant import MatrixDeterminant
 import constants
@@ -14,21 +14,21 @@ class MatrixRREF:
         self.__matrix_ref = None
     
 
-    def matrix_to_rref(self):
+    def calculate_rref(self):
 
         # Převod na standardní REF
         self.__matrix_ref = MatrixREF(self.mx)
 
-        self.mx_rref = self.__matrix_ref.matrix_to_ref()
+        self.mx_rref = self.__matrix_ref.calculate_ref()
         self.pivot_positions = self.__matrix_ref.pivot_positions
         
 
         # Zpětný průchod maticí pro získání RREF tvaru
-        self.matrix_ref_to_rref()
+        self.__matrix_ref_to_rref()
          
         return self.mx_rref
 
-    def matrix_ref_to_rref(self):
+    def __matrix_ref_to_rref(self):
 
         # edgecase pivot pouze v prvním řádku nebo se jedná o číslo
         if len(self.pivot_positions) == 1:

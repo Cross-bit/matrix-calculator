@@ -37,7 +37,7 @@ class MatrixPrintObject:
         rounded_val = round(cell_value, self.round_to)
         return self.__dec_to_frac(rounded_val) if self.use_frac else rounded_val
     
-    def __dec_to_frac(self, value, denominator_limit = 100):
+    def __dec_to_frac(self, value, denominator_limit = 1000):
         f_pi = Fraction(str(value))
         return str(f_pi.limit_denominator(denominator_limit))
 

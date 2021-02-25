@@ -1,4 +1,4 @@
-from operations.elementary_operations import ElementaryOperations as ElementarOP
+from elementary_operations import ElementaryOperations as ElementarOP
 from matrix import Matrix;
 
 class MatrixAddition:
@@ -10,7 +10,7 @@ class MatrixAddition:
 
     def calculate_sum(self, substract = False):
         
-        if not ElementarOP.check_if_matrix_dims_are_same(self.mx1, self.mx2):
+        if not ElementarOP.check_if_matrix_dims_equal(self.mx1, self.mx2):
             print("Zadané matice nejsou stejných roměrů!")
             return
 
