@@ -144,7 +144,7 @@ class OperationExecution:
 
         print(" - " * (mx.m * 2))
         self.__current_operation = MatrixScalarMultiplication(mx, scalar)
-        self.operation_result = self.__current_operation.calculate_multiplication()
+        self.operation_result = self.__current_operation.calculate_scalar_multiplication()
         MatrixConsolePrinter.print_default(self.operation_result)
 
     def mx_multiply(self):
