@@ -75,9 +75,9 @@ class OperationExecution:
         return mx            
 
     def mx_add(self):
-
+        #1)
         print("\nOperace sčítání:")
-
+        #2)
         print("\nZadání 1. matice:")
         print("¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯ ¯")
 

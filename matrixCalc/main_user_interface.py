@@ -60,7 +60,7 @@ class MainUserInterface:
 
     # Uživatelské rozhraní uložení dat
     def data_store_selection(self):
-        print("""Pokud si přejete matici uložit napište jméno souboru(stačí bez přípony), jinak pro pokračování stiskněte Enter""")
+        print("""Pokud si přejete výsledek uložit napište jméno souboru(stačí bez přípony), jinak pro pokračování stiskněte Enter""")
 
         try:
             user_input = input()
