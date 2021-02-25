@@ -1,5 +1,5 @@
 from operations.matrix_ref import MatrixREF
-
+import constants
 class MatrixDeterminant:
 
     def __init__(self, matrix = None):
@@ -25,6 +25,9 @@ class MatrixDeterminant:
 
             for i in range(dimensions[0]):
                 self.determinant *= mx_ref.data[i][i]
+            
+            if(abs(self.determinant) < 10**(constants.OUTPUT_PRECISION*(-1))):
+                return 0.0
 
             self.determinant *= determinant_sign
             return self.determinant
